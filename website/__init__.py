@@ -1,4 +1,5 @@
 from flask import Flask
+from website.models.db import db_init
 
 
 def create_app():
@@ -10,5 +11,8 @@ def create_app():
 
     app.register_blueprint(views, urlprefix='/')
     app.register_blueprint(auth, urlprefix='/')
+
+    # Initiate the database connection
+    db_init()
 
     return app
