@@ -14,4 +14,4 @@ dist/
 build/
 *.egg-info/
 
-privatee/
+private/
