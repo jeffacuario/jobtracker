@@ -2,7 +2,7 @@ import unittest
 # from unittest.mock import Mock
 
 import firebase_admin
-from firebase_admin import firestore    # noqs: F401
+from firebase_admin import firestore  # noqa: F401
 # from website.models import db as db_funcs
 
 
