@@ -2,7 +2,6 @@ import unittest
 # from unittest.mock import Mock
 
 import firebase_admin
-from firebase_admin import firestore
 # from website.models import db as db_funcs
 
 
@@ -24,6 +23,7 @@ class MyTestCase(unittest.TestCase):
                 Else, this will perform "mock" tests to a "mock" database.
         """
         try:
+            from firebase_admin import firestore
             with open("../private/json_file_name.txt", "r") as db_file:
                 file_json = db_file.read()
 
@@ -31,7 +31,7 @@ class MyTestCase(unittest.TestCase):
             firebase_admin.initialize_app(cred)
             db = firebase_admin.firestore.client()
             cls.tests_db = db.collection(cls.test_col).document(cls.test_doc)
-        except:
+        except IOError:
             cls.mock_flag = True
 
     @classmethod
