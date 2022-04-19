@@ -1,5 +1,15 @@
 {% extends "base.html" %} 
 {% block title %}Register{% endblock %} 
 {% block content %}
-<h1>Register</h1>
+<form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+</form>
+
+{% if error_message %}
+    <p>{{error_message}}</p>
+{% endif %}
 {% endblock %}
