@@ -1,5 +1,34 @@
-{% extends "base.html" %} 
-{% block title %}Jobs/Internships{% endblock %} 
+{% extends "base.html" %}
+{% block title %}Jobs/Internships{% endblock %}
+
 {% block content %}
-<h1>Jobs</h1>
+
+<!-- Jobs Table -->
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2><b>Jobs/Internships</b></h2>
+            </div>
+            <div class="col-sm-4 table-header">
+                <span class="total-count">
+                    Total: {{jobs | length}} jobs
+                </span>
+                {% include "jobs/jobs_modal.html" %}
+            </div>
+        </div>
+    </div>
+
+    <!-- handle no jobs -->
+    {% if jobs|length == 0 %}
+    <div class="no-items">
+        <p>No Jobs Yet...</p>
+        {% include "jobs/jobs_modal.html" %}
+    </div>
+    {% else %}
+    {% include "jobs/jobs_table.html" %}
+    {% endif %}
+
+</div>
+
 {% endblock %}

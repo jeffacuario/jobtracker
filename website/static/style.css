@@ -1,0 +1,25 @@
+nav {
+    padding-left: 10px;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.table-header, .modal-action{
+    text-align: right;
+}
+
+.modal-body {
+    text-align: left;
+}
+
+.total-count {
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.no-items {
+    text-align: center;
+    margin-top: 15%;
+}

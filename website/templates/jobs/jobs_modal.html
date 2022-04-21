@@ -1,0 +1,21 @@
+<!-- Button to trigger modal for job form-->
+<button type="button" class="btn btn-primary addJobButton" data-toggle="modal" title="Add a new job/internship"
+    data-target="#addNewJob">
+    Add Job
+</button>
+
+<!-- Job Modal -->
+<div class="modal fade" id="addNewJob" tabindex="-1" role="dialog" aria-labelledby="addNewJobLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewJobLabel">
+                    Add New Job/Internship
+                </h5>
+            </div>
+            <div class="modal-body">
+                {% include 'jobs/jobs_form.html' %}
+            </div>
+        </div>
+    </div>
+</div>
