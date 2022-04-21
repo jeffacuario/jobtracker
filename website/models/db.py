@@ -2,6 +2,7 @@ import firebase_admin as fa
 from firebase_admin import firestore
 import json
 
+
 def db_init():
     """ Log in creds"""
     # Firebase credentials
