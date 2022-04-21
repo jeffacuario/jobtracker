@@ -6,7 +6,7 @@ import json
 def db_init():
     """ Log in creds"""
     # Firebase credentials
-    file_json = "key.json"
+    file_json = "credentials.json"
     cred = fa.credentials.Certificate("./private/" + file_json)
     fa.initialize_app(cred)
 
