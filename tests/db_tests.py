@@ -24,9 +24,7 @@ class MyTestCase(unittest.TestCase):
                 Else, this will perform "mock" tests to a "mock" database.
         """
         try:
-            with open("../private/json_file_name.txt", "r") as db_file:
-                file_json = db_file.read()
-
+            file_json = 'credentials.json'
             cred = firebase_admin.credentials.Certificate("../private/" + file_json)
             firebase_admin.initialize_app(cred)
             db = firebase_admin.firestore.client()
