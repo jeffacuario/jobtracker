@@ -2,4 +2,26 @@
 {% block title %}Analytics{% endblock %}
 {% block content %}
 <h1>Analytics</h1>
+<div style="display:flex;">
+    <div id="key-skills"  style="backgroundColor:red;">
+        <img src="{{url_for('static', filename=data.your_skills ) }}">
+    </div>
+
+    <div id="popular-skills" style="backgroundColor:blue;">
+        <img src="{{url_for('static', filename=data.popular_skills ) }}">
+    </div>
+</div>
+
+
+<!-- Add in a search engine? -->
+<div>
+
+</div>
+
+<!-- Need to add in a script block to template -->
+<script>
+
+
+</script>
+
 {% endblock %}

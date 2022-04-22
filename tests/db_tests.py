@@ -1,9 +1,9 @@
 import unittest
-# from unittest.mock import Mock
+from unittest.mock import Mock  # noqa: F401
 
 import firebase_admin
 from firebase_admin import firestore  # noqa: F401
-# from website.models import db as db_funcs
+from website.models import db as db_funcs  # noqa: F401
 
 
 class MyTestCase(unittest.TestCase):
