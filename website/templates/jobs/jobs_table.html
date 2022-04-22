@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Update/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n in range(jobs|length) %}
+        <tr id="{{jobs[n].id}}">
+            <td><a href="/application/{{jobs[n].id}}">{{n+1}}</a></td>
+            <td>{{jobs[n].company}}</td>
+            <td>{{jobs[n].position}}</td>
+            <td>{{jobs[n].type}}</td>
+            <td>{{jobs[n].date}}</td>
+            <td>{{jobs[n].status}}</td>
+            <td>
+                <a class="edit" title="Edit" data-toggle="tooltip">Edit</a>
+                <a class="delete" title="Delete" data-toggle="tooltip" href="/">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

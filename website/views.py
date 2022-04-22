@@ -1,14 +1,26 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+
+import website.models.db as db
+from website.models.models import Application
+from datetime import date
+
 
 views = Blueprint('views', __name__)
 
 
-@views.route('/')
+@views.route('/', methods=['GET', 'POST'])
 def jobs():
     """
     Render Jobs Page
     """
-    return render_template("jobs/jobs.html")
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        data['date'] = date.today().strftime("%B %d, %Y")
+        app = Application(data['company'], data['position'], data['type'], data['date'], data['status'])
+        db.addJob(app)
+        return render_template("jobs/jobs.html", jobs=db.getJobs())
+    else:
+        return render_template("jobs/jobs.html", jobs=db.getJobs())
 
 
 @views.route('/skills')
