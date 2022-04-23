@@ -1,5 +1,5 @@
 from firebase_admin import auth as fa_auth
-from distutils.command.config import config
+from distutils.command.config import config  # noqa F401
 from flask import Blueprint, render_template, request, redirect, url_for, g, session  # noqa E501
 import json
 import pyrebase
