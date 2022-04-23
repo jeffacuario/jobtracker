@@ -1,7 +1,10 @@
-from distutils.command.config import config
-from flask import Blueprint, render_template, request, redirect, url_for, g, session
 from firebase_admin import auth as fa_auth
-import json, pyrebase, requests, functools
+from distutils.command.config import config
+from flask import Blueprint, render_template, request, redirect, url_for, g, session  # noqa E501
+import json
+import pyrebase
+import requests
+import functools
 
 
 auth = Blueprint('auth', __name__)
@@ -39,7 +42,7 @@ def login():
             print(error)
             if error == 'INVALID PASSWORD' or error == 'EMAIL_NOT_FOUND':
                 error_message = "You have entered an invalid email or password"
-            return render_template("auth/login.html", error_message=error_message)
+            return render_template("auth/login.html", error_message=error_message)  # noqa E501
     return render_template("auth/login.html")
 
 
@@ -58,16 +61,17 @@ def register():
         try:
             user = fb_auth.create_user_with_email_and_password(email, password)
             fa_auth.update_user(user.get("localId"), display_name=username)
-        except requests.exceptions.HTTPError as e: # we will need to handle the exception and display error to user
+        except requests.exceptions.HTTPError as e:
             print(e)
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
             print(error)
             if error == 'EMAIL_EXISTS':
                 error_message = "Email already registered"
-            elif error == 'WEAK_PASSWORD : Password should be at least 6 characters':
+            elif error == 'WEAK_PASSWORD : Password should be at least 6 characters':  # noqa E501
                 error_message = "Password should be at least 6 characters"
-            return render_template("auth/register.html", error_message=error_message)
+            return render_template("auth/register.html",
+                                   error_message=error_message)
         else:
             return redirect(url_for("auth.login"))
 
@@ -93,6 +97,7 @@ def load_logged_in_user():
                 session.clear()
                 return redirect(url_for("auth.logout"))
 
+
 @auth.route('/logout')
 def logout():
     session.clear()
@@ -108,4 +113,3 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
-
