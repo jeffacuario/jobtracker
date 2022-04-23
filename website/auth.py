@@ -13,8 +13,8 @@ auth = Blueprint('auth', __name__)
     Initialize pyrebase app
 """
 with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
-        config = json.load(json_file)
-firebase = pyrebase.initialize_app(config)
+    pyrebase_config = json.load(json_file)
+firebase = pyrebase.initialize_app(pyrebase_config)
 fb_auth = firebase.auth()
 
 
