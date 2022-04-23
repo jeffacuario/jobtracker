@@ -1,0 +1,319 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500;600;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+
+    <title>CS 467 Job Tracker</title>
+</head>
+
+<body>
+    <!------------------- Navigation ------------------->
+    <header class="fixed-top">
+        <div class="nav-container">
+            <div class="nav-logo-container">
+                <div class="navbar-brand">
+                    <a href="/">Job Tracker</a>
+                </div>
+            </div>
+            <nav class="d-flex p-2 justify-content-end">
+                <!-- <a href=# class="nav-btn-1">About & Meet the team</a> -->
+                <a href="/login" class="nav-btn-1">Sign in</a>
+                <a class="btn rounded-pill nav-btn-2" href="/register">Get started</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!----------------- Background ------------------->
+    <section class="bg-section bg-cover" style="background-image: url(/static/images/keep_track_1.jpg);">
+        <!-- image reference: https://unsplash.com/photos/XkKCui44iM0 -->
+        <div class="bg-content">
+            <div class="bg-container">
+                <div class="row">
+                    <!-- https://getbootstrap.com/docs/5.0/layout/grid/ -->
+                    <div class="row justify-content: start;">
+                        <div class="col-12 col-lg-9">
+                            <h1>Keep Track of Your Applications</h1>
+                            <h2>Best platform to help you organize</h2>
+                            <div>
+                                <a href="/register" class="btn rounded-pill bg-btn">Create Your Profile &nbsp; <i
+                                        class="icon-angle-right icon-large"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!------------------- Companies lists --------------------->
+    <section class="container">
+        <h1 class="companies-section-h1">Companies that are hiring</h1>
+        <h2 class="text-secondary">Explore your opportunities</h2>
+        <div class="row mt-4 mt-md-5">
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.amazon.jobs/en/" class="company-content-logo"
+                            style="background-image: url(static/images/amazon.png);"></a>
+                        <a href="https://www.amazon.jobs/en/" class="company-content-name">E-commerce company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.amazon.jobs/en/job_categories/software-development">Software
+                                Development</a></div>
+                        <div class="company-content-openjobs">31479 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.amazon.jobs/en/job_categories/operations-it-support-engineering">Operations,
+                                IT, & Support Engineering</a></div>
+                        <div class="company-content-openjobs">5716 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.amazon.jobs/en/job_categories/machine-learning-science">Machine
+                                Learning Science</a></div>
+                        <div class="company-content-openjobs">1675 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.amazon.jobs/en/job_categories/data-science">Data Science</a></div>
+                        <div class="company-content-openjobs">839 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.expedia.com/" class="company-content-logo"
+                            style="background-image: url(/static/images/expedia.png);"></a>
+                        <a href="https://www.expedia.com/" class="company-content-name">Engineering company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://lifeatexpediagroup.com/jobs?job_function=Development">Software
+                                Development</a></div>
+                        <div class="company-content-openjobs">358 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://lifeatexpediagroup.com/jobs?job_function=Technical%20Operations">Technical
+                                Operations</a></div>
+                        <div class="company-content-openjobs">21 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://lifeatexpediagroup.com/jobs?job_function=Infrastructure%20%26%20Enterprise%20Engineering">Infrastructure
+                                & Enterprise Engineering</a></div>
+                        <div class="company-content-openjobs">9 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://lifeatexpediagroup.com/jobs?job_function=Data%20Science">Data Science</a>
+                        </div>
+                        <div class="company-content-openjobs">65 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.redfin.com/" class="company-content-logo"
+                            style="background-image: url(static/images/redfin.png);"></a>
+                        <a href="https://www.redfin.com/" class="company-content-name">Real estate company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.redfin.com/careers/departments/engineering">Engineering & Product</a>
+                        </div>
+                        <div class="company-content-openjobs">28 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.redfin.com/careers/departments/analytics">Data Science & Analytics</a>
+                        </div>
+                        <div class="company-content-openjobs">4 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.redfin.com/careers/departments/information-technology">IT & Customer
+                                Service</a></div>
+                        <div class="company-content-openjobs">5 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://lifeatexpediagroup.com/jobs?job_function=Data%20Science">Data Science</a>
+                        </div>
+                        <div class="company-content-openjobs">65 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.nuro.ai/" class="company-content-logo"
+                            style="background-image: url(static/images/nuro.png);"></a>
+                        <a href="https://www.nuro.ai/" class="company-content-name">Robotics company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.nuro.ai/careers">Technical Infrastructure</a></div>
+                        <div class="company-content-openjobs">9 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.nuro.ai/careers">Operations & Commercialization</a></div>
+                        <div class="company-content-openjobs">5 open jobs</div>
+                        <div class="company-content-description text-secondary"><a href="https://www.nuro.ai/careers">IT
+                                & Security</a></div>
+                        <div class="company-content-openjobs">7 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.nuro.ai/careers">Software Development</a></div>
+                        <div class="company-content-openjobs">36 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://stripe.com/" class="company-content-logo"
+                            style="background-image: url(static/images/stripe.png);"></a>
+                        <a href="https://stripe.com/" class="company-content-name">Financial services company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://stripe.com/jobs/search?t=engineering&l=mexico%2Cnewyork%2Csanfrancisco%2Cseattle%2Cwashingtondc">Software
+                                Engineering</a></div>
+                        <div class="company-content-openjobs">541 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://stripe.com/jobs/search?t=operations.operations-engineering&l=mexico%2Cnewyork%2Csanfrancisco%2Cseattle%2Cwashingtondc">Operations
+                                Engineering</a></div>
+                        <div class="company-content-openjobs">3 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://stripe.com/jobs/search?t=product-and-technical.data-science&l=mexico%2Cnewyork%2Csanfrancisco%2Cseattle%2Cwashingtondc">Data
+                                science
+                            </a></div>
+                        <div class="company-content-openjobs">41 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://stripe.com/jobs/search?t=product-and-technical.corporate-technology&l=mexico%2Cnewyork%2Csanfrancisco%2Cseattle%2Cwashingtondc">Corporate
+                                Technology</a></div>
+                        <div class="company-content-openjobs">6 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.valvesoftware.com/en/" class="company-content-logo"
+                            style="background-image: url(static/images/valve.png);"></a>
+                        <a href="https://www.valvesoftware.com/en/" class="company-content-name">Video game company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.valvesoftware.com/en/?job_cat=software-engineering">Software
+                                Engineering</a></div>
+                        <div class="company-content-openjobs">11 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.valvesoftware.com/en/?job_cat=data-science">Data Science</a></div>
+                        <div class="company-content-openjobs">3 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.valvesoftware.com/en/?job_cat=game-design">Game Design</a></div>
+                        <div class="company-content-openjobs">1 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://www.valvesoftware.com/en/?job_cat=technical-infrastructure">Steam Database
+                                Administrator</a></div>
+                        <div class="company-content-openjobs">1 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.salesforce.com/" class="company-content-logo"
+                            style="background-image: url(static/images/salesforce.png);"></a>
+                        <a href="https://www.salesforce.com/" class="company-content-name">Software company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://salesforce.wd1.myworkdayjobs.com/External_Career_Site">Software
+                                Development</a></div>
+                        <div class="company-content-openjobs">536 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://salesforce.wd1.myworkdayjobs.com/External_Career_Site">Data Science</a>
+                        </div>
+                        <div class="company-content-openjobs">276 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://salesforce.wd1.myworkdayjobs.com/External_Career_Site">Machine
+                                Learning</a></div>
+                        <div class="company-content-openjobs">61 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://salesforce.wd1.myworkdayjobs.com/External_Career_Site">Information
+                                Technology</a></div>
+                        <div class="company-content-openjobs">248 open jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 col-xxl-3 companies-container">
+                <div class="companies-box">
+                    <div class="companies-content">
+                        <a href="https://www.workday.com/" class="company-content-logo"
+                            style="background-image: url(static/images/workday.png);"></a>
+                        <a href="https://www.workday.com/" class="company-content-name">Software company</a>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://workday.wd5.myworkdayjobs.com/Workday?timeType=f6404bba2875449e95d59087966ee190&Location_Country=bc33aa3152ec42d4995f4791a106ed09&jobFamilyGroup=8c5ce7a1cffb43e0a819c249a49fcb00">Engineering</a>
+                        </div>
+                        <div class="company-content-openjobs">276 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://workday.wd5.myworkdayjobs.com/Workday?timeType=f6404bba2875449e95d59087966ee190&Location_Country=bc33aa3152ec42d4995f4791a106ed09&jobFamilyGroup=11d42f4a487c46b9b29ab3e087c2f5ca">Information
+                                Systems</a></div>
+                        <div class="company-content-openjobs">34 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://workday.wd5.myworkdayjobs.com/Workday?timeType=f6404bba2875449e95d59087966ee190&Location_Country=bc33aa3152ec42d4995f4791a106ed09&jobFamilyGroup=4b2f970c50930155b9985193020a0c72">Data
+                                Science, BI and Analytics</a></div>
+                        <div class="company-content-openjobs">13 open jobs</div>
+                        <div class="company-content-description text-secondary"><a
+                                href="https://workday.wd5.myworkdayjobs.com/Workday?timeType=f6404bba2875449e95d59087966ee190&Location_Country=bc33aa3152ec42d4995f4791a106ed09&jobFamilyGroup=a88cba90a00841e0b750341c541b9d56">Engineering
+                                Operations</a></div>
+                        <div class="company-content-openjobs">19 open jobs</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct mx-auto" style="width: 300px;">
+                <a href="https://oregonstate.joinhandshake.com/stu/postings" class="btn rounded-pill nav-btn-3">More
+                    Companies</a>
+            </div>
+        </div>
+    </section>
+
+    <!------------------- Call to action --------------------->
+    <section class="container">
+        <div class="cta-container">
+            <div class="cta-content">
+                <h2 class="cta-section-h2"><span style="color:#d73f09">Get Your Application</span> Organized</h2>
+                <h2 class="cta-section-p">It only takes <strong>5 minutes</strong> to make your job hunting</h2>
+                <h3 class="cta-section-w">
+                    <strong>Simple.</strong><Strong>Streamlined.</Strong><Strong>Seamless</Strong>
+                </h3>
+                <div class="cta-btn mx-auto">
+                    <a href="/register" class="btn rounded-pill bg-btn">Create Your Profile &nbsp; <i
+                            class="icon-angle-right icon-large"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------------------- Footer --------------------->
+    <footer class="footer-section ">
+        <div class="footer-section-bottom">
+            <div class="footer-container">
+                <div class="row justify-content-md-between align-items-sm-center">
+                    <!-- https://getbootstrap.com/docs/4.0/utilities/flex/ -->
+                    <div class="footer-text col-lg-auto">
+                        <div class="text-body"><u>Copyright</u>© 2022 Oregon State University. All Right By CS 467 Job
+                            Tracker Team</a>.</div>
+                    </div>
+                    <div class="col-lg-auto">
+                        <div class="footer-icon-lists mt-3 mt-lg-0">
+                            <!-- https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-lists.php -->
+                            <ul class="list-unstyled">
+                                <li><i class="icon-facebook-sign"></i></li>
+                                <li><i class="icon-twitter"></i></li>
+                                <li><i class="icon-instagram"></i></li>
+                                <li><i class="icon-linkedin"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

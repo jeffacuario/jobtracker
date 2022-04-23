@@ -53,3 +53,11 @@ def settings():
     Render Settings Page
     """
     return render_template("settings/settings.html")
+
+
+@views.route('/home')
+def home():
+    """
+    Render Landing Page
+    """
+    return render_template("landing.html")
