@@ -90,6 +90,7 @@ def load_logged_in_user():
             error = json.loads(error_json)['error']['message']
             print(error)
             if error == 'INVALID_ID_TOKEN':
+                session.clear()
                 return redirect(url_for("auth.logout"))
 
 @auth.route('/logout')
