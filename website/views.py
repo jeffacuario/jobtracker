@@ -65,7 +65,7 @@ def analytics_chart_generator():
     plt.savefig('website/static/images/chart1.png')
     plt.close()
 
-    plt.bar(['Java', 'Standup', 'Python', 'C++', 'Javascript'], [20, 2, 20, 8, 2])
+    plt.bar(['Java', 'Standup', 'Python', 'C++', 'Javascript'], [5, 2, 20, 8, 2])
     plt.xlabel('Skills')
     plt.ylabel('Frequency')
     plt.title('FAKE DATA Overall Skills Bar chart')
