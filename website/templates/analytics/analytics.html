@@ -4,15 +4,16 @@
 <h1>Analytics</h1>
 <div style="display:flex;">
     <div id="key-skills"  style="backgroundColor:red;">
-        <img src="{{url_for('static', filename=data.your_skills ) }}">
+        <img src="" id="chart1">
     </div>
 
     <div id="popular-skills" style="backgroundColor:blue;">
-        <img src="{{url_for('static', filename=data.popular_skills ) }}">
+        <img src="" id="chart2">
     </div>
 </div>
-
-
+<button id="refreshData">
+    Refresh
+</button>
 <!-- Add in a search engine? -->
 <div>
 
@@ -20,8 +21,22 @@
 
 <!-- Need to add in a script block to template -->
 <script>
+function getCharts() {
+    let generateChart = "chart-gen";
+    let webAppURL = window.location.href;
+    fetch(webAppURL + "/" + generateChart)
+    .then( (c) => {
+        document.getElementById("chart1").src = "static/images/chart1.png";
+        document.getElementById("chart2").src = "static/images/chart2.png";
+    })
+}
 
+document.getElementById("refreshData").addEventListener("click", () => {
+    getCharts;
+    window.location.reload();
+})
 
+getCharts()
 </script>
 
 {% endblock %}

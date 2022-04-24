@@ -4,9 +4,9 @@ import website.models.db as db
 from website.models.models import Application
 from datetime import date
 
-
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 from firebase_admin import firestore
 
 views = Blueprint('views', __name__)
@@ -48,29 +48,31 @@ def analytics():
     """
     Render Analytics Page
     """
+    return render_template("analytics/analytics.html")
+
+
+@views.route('/analytics/chart-gen')
+def analytics_chart_generator():
+    """
+    Obscured URI to generate the appropriate charts on demand.
+    """
     # Reference to matplotlib docs
     # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
-
-    plt.bar(['Trading', 'Standup', 'Cryptography', 'TEST', 'Javascript'], [10, 2, 5, 8, 1])
+    plt.bar(['Trading', 'Standup', 'Cryptography', 'TEST', 'Javascript'], [10, 5, 5, 8, 1])
     plt.xlabel('Skills')
     plt.ylabel('Frequency')
     plt.title('FAKE DATA Skills Bar chart')
-    plt.savefig('website/static/images/example.png')
+    plt.savefig('website/static/images/chart1.png')
     plt.close()
 
-    # Demo code https://www.educative.io/edpresso/how-to-create-a-bar-chart-using-matplotlib
-    plt.bar(['Java', 'Standup', 'Python', 'C++', 'Javascript'], [5, 2, 7, 8, 2])
+    plt.bar(['Java', 'Standup', 'Python', 'C++', 'Javascript'], [20, 2, 20, 8, 2])
     plt.xlabel('Skills')
     plt.ylabel('Frequency')
     plt.title('FAKE DATA Overall Skills Bar chart')
-    plt.savefig('website/static/images/example2.png')
+    plt.savefig('website/static/images/chart2.png')
     plt.close()
 
-    data = {
-        "your_skills": "images/example.png",
-        "popular_skills": "images/example2.png"
-    }
-    return render_template("analytics/analytics.html")
+    return '', 204  # No content to be returned to the user.
 
 
 @views.route('/settings')
