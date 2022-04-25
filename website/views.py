@@ -8,7 +8,7 @@ from datetime import date
 views = Blueprint('views', __name__)
 
 
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/jobs', methods=['GET', 'POST'])
 def jobs():
     """
     Render Jobs Page
@@ -55,7 +55,7 @@ def settings():
     return render_template("settings/settings.html")
 
 
-@views.route('/home')
+@views.route('/')
 def home():
     """
     Render Landing Page
