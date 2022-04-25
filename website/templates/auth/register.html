@@ -1,5 +1,24 @@
 {% extends "base.html" %} 
 {% block title %}Register{% endblock %} 
 {% block content %}
-<h1>Register</h1>
+    <form class="form-signup" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Create your free account</h1>
+        <label for="inputName" class="sr-only">Name</label>
+        <input name="inputName" type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="inputEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <br>
+        <br>
+        <p>Already have an acccount? <a href="{{ url_for('auth.login') }}">Log In</a></p>
+    </form>
+
+  
+
+{% if error_message %}
+    <p>{{error_message}}</p>
+{% endif %}
 {% endblock %}
