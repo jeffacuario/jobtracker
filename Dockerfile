@@ -8,7 +8,6 @@ COPY . /app
 WORKDIR /app
 
 # upgrade pip
-
 RUN pip3 install --upgrade pip
 
 # update setup tools
