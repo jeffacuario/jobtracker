@@ -55,6 +55,21 @@ def generate_charts():
     skills_chart(data)
 
 
+def chart_collection_defence(data, target, chart_names):
+    """ In the event of a missing collection, chart creation will not be compromised entirely."""
+    try:
+        return [chart.to_dict() for chart in data[target]]
+    except KeyError:
+        # No chart can be created if at least one "application" collection does not exist.
+        # This defends against the page crash error.
+        source = "website/static/images/inf-load-free.gif"
+
+        for each_chart in chart_names:
+            destin = 'website/static/images/' + each_chart + '.png'
+            shutil.copyfile(source, destin)
+        return False
+
+
 def counts_chart(data):
     """ Counts chart - count.png
         Data consists of Applications, Skills, and Contacts entries on record
@@ -82,16 +97,9 @@ def apps_chart(data):
         "Position Types",
         "Companies Applied"
     ]
-    try:
-        app_in_depth = [app.to_dict() for app in data["applications"]]
-    except KeyError:
-        # No chart can be created if at least one "application" collection does not exist.
-        # This defends against the page crash error.
-        source = "website/static/images/inf-load-free.gif"
+    app_in_depth = chart_collection_defence(data, "applications", chart_names)
 
-        for each_chart in chart_names:
-            destin = 'website/static/images/' + each_chart + '.png'
-            shutil.copyfile(source, destin)
+    if not app_in_depth:
         return
 
     positions, dates, types, status, companies = {}, {}, {}, {}, {}
@@ -114,12 +122,17 @@ def apps_active_data_chart(data):
 
 
 def skills_chart(data):
-    skill_in_depth = [app.to_dict() for app in data["skills"]]
+    """ Skills charts """
+    chart_names = [
+        "Your Skills"
+    ]
+    skill_in_depth = chart_collection_defence(data, "skill", chart_names)
+
     skills_freq_count = {}
     for each_skill in skill_in_depth:
         aggregator_dict_app_chart("skill", skills_freq_count, each_skill)
 
-    plot_creator(skills_freq_count, "Your Skills")
+    plot_creator(skills_freq_count, chart_names[0])
 
 
 def global_skills(data):
