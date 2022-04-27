@@ -1,9 +1,9 @@
 import unittest
-# from unittest.mock import Mock
+from unittest.mock import Mock  # noqa: F401
 
 import firebase_admin
 from firebase_admin import firestore  # noqa: F401
-# from website.models import db as db_funcs
+from website.models import db as db_funcs  # noqa: F401
 
 
 class MyTestCase(unittest.TestCase):
@@ -24,9 +24,7 @@ class MyTestCase(unittest.TestCase):
                 Else, this will perform "mock" tests to a "mock" database.
         """
         try:
-            with open("../private/json_file_name.txt", "r") as db_file:
-                file_json = db_file.read()
-
+            file_json = 'credentials.json'
             cred = firebase_admin.credentials.Certificate("../private/" + file_json)
             firebase_admin.initialize_app(cred)
             db = firebase_admin.firestore.client()

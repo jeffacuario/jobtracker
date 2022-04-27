@@ -2,9 +2,9 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from website.auth import login_required
 
 import website.models.db as db
+import website.models.analytics as analysis
 from website.models.models import Application, Skill
 from datetime import date
-
 
 views = Blueprint('views', __name__)
 
@@ -60,11 +60,28 @@ def contacts():
     return render_template("contacts/contacts.html")
 
 
-@views.route('/analytics')
+@views.route('/analytics', methods=['GET', 'POST'])
 @login_required
 def analytics():
-    """Render Analytics Page"""
-    return render_template("analytics/analytics.html")
+    """ Render Analytics Page """
+    if request.method == 'POST':
+        # To be determined if a search is needed.
+        return '', 403
+
+    elif request.method == "GET":
+        # Get request
+
+        return render_template("analytics/analytics.html")
+
+    return 'Method not allowed', 405
+
+
+@views.route('/analytics/generate-charts', methods=['POST'])
+@login_required
+def analytics_generate():
+    """ Acts as a URI for use with JS to fetch - allows refresh."""
+    analysis.generate_charts()
+    return '', 204
 
 
 @views.route('/settings')
