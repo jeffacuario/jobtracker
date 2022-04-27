@@ -1,0 +1,23 @@
+<form action="/skills" method="POST">
+    <div class="mb-3">
+        <label for="skill" class="form-label">Skill*</label>
+        <input type="text" class="form-control" id="skill" aria-describedby="skillHelp"
+            name="skill" placeholder="Enter Skill" />
+    </div>
+    <div class="mb-3">
+        <label for="position" class="form-label" name="position" >Position*</label>
+        <select name="position" class="form-control">
+            <option selected>Select Position...</option>
+            {% for n in jobs%}
+                <option>{{n.position}}-{{n.company}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <div class="modal-action">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+
+
