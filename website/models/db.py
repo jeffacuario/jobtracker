@@ -53,10 +53,10 @@ def addSkill(val):
     """Adds skill to firebase skills collection"""
     values = json.dumps(val.__dict__)
     dbConn('skills').add(eval(values))
-    return "success"   
+    return "success"
 
 
 def deleteSkill(skillID):
     """Deletes provided skillID from the firebase database"""
     dbConn('skills').document(skillID).delete()
-    return 'deleted' 
+    return 'deleted'

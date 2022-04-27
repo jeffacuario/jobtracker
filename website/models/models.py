@@ -6,6 +6,7 @@ class Application:
         self.date = date
         self.status = status
 
+
 class Skill:
     def __init__(self, skill, position, company):
         self.skill = skill
