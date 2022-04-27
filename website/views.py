@@ -1,13 +1,9 @@
 from flask import Blueprint, render_template, request
 
 import website.models.db as db
+import website.models.analytics as analysis
 from website.models.models import Application
 from datetime import date
-
-import matplotlib.pyplot as plt
-import numpy as np
-import os
-from firebase_admin import firestore
 
 views = Blueprint('views', __name__)
 
@@ -43,36 +39,30 @@ def contacts():
     return render_template("contacts/contacts.html")
 
 
-@views.route('/analytics')
+@views.route('/analytics', methods=['GET', 'POST'])
 def analytics():
     """
     Render Analytics Page
     """
-    return render_template("analytics/analytics.html")
+    if request.method == 'POST':
+        # To be determined if a search is needed.
+        return '', 403
+
+    elif request.method == "GET":
+        # Get request
+
+        return render_template("analytics/analytics.html")
+
+    return 'Method not allowed', 405
 
 
-@views.route('/analytics/chart-gen')
-def analytics_chart_generator():
+@views.route('/analytics/generate-charts', methods=['POST'])
+def analytics_generate():
     """
-    Obscured URI to generate the appropriate charts on demand.
+    Acts as a URI for use with JS to fetch - allows refresh.
     """
-    # Reference to matplotlib docs
-    # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
-    plt.bar(['Trading', 'Standup', 'Cryptography', 'TEST', 'Javascript'], [10, 5, 5, 8, 1])
-    plt.xlabel('Skills')
-    plt.ylabel('Frequency')
-    plt.title('FAKE DATA Skills Bar chart')
-    plt.savefig('website/static/images/chart1.png')
-    plt.close()
-
-    plt.bar(['Java', 'Standup', 'Python', 'C++', 'Javascript'], [5, 2, 20, 8, 2])
-    plt.xlabel('Skills')
-    plt.ylabel('Frequency')
-    plt.title('FAKE DATA Overall Skills Bar chart')
-    plt.savefig('website/static/images/chart2.png')
-    plt.close()
-
-    return '', 204  # No content to be returned to the user.
+    analysis.generate_charts()
+    return '', 204
 
 
 @views.route('/settings')
