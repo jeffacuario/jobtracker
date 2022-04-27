@@ -60,3 +60,24 @@ def deleteSkill(skillID):
     """Deletes provided skillID from the firebase database"""
     dbConn('skills').document(skillID).delete()
     return 'deleted'
+
+
+def retrieve_all():
+    """ Retrieve all the user data"""
+    # Get data per the user - however, currently, this is a mock
+    db = firestore.client()
+
+    applications = db.collection('applications').get()
+    skills = db.collection("skills").get()
+    contacts = db.collection("contacts").get()
+
+    app_list = [app for app in applications]
+    skills_list = [skill for skill in skills]
+    contact_list = [contact for contact in contacts]
+
+    data = {
+        "applications": app_list,
+        "skills": skills_list,
+        "contacts": contact_list
+    }
+    return data

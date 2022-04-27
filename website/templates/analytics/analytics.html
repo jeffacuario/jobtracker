@@ -1,5 +1,93 @@
+<!--
+Gif loading image
+source: https://icons8.com/preloaders/
+-->
 {% extends "base.html" %}
 {% block title %}Analytics{% endblock %}
 {% block content %}
 <h1>Analytics</h1>
+<div style="display:flex;">
+    <div>
+        <img src="static/images/inf-load-free.gif" id="chart0">
+    </div>
+
+    <div>
+        <img src="static/images/inf-load-free.gif" id="chart1">
+    </div>
+</div>
+
+<h2>
+    Positions
+</h2>
+
+<div style="display:flex;">
+    <div>
+        <img src="static/images/inf-load-free.gif" id="chart2">
+    </div>
+    <div>
+        <img src="static/images/inf-load-free.gif" id="chart3">
+    </div>
+    <div>
+        <img src="static/images/inf-load-free.gif" id="chart4">
+    </div>
+</div>
+
+<h2>
+    Skills
+</h2>
+
+<div>
+    <img src="static/images/inf-load-free.gif" id="chart5">
+</div>
+
+<h2>
+    Contacts
+<!--    Count? -->
+</h2>
+
+<button id="refreshData">
+    Refresh
+</button>
+
+<div>
+<!-- Add in a search engine? -->
+</div>
+
+<!-- Need to add in a script block to template -->
+<script>
+function getCharts() {
+    // Generate the charts on demand
+    const generateChart = "chart-gen";
+    const webAppURL = window.location.href + "/generate-charts";
+    const baseImgSrc = "static/images/";
+    const baseExt = ".png";
+
+    const charts = [
+        "count",
+        "Application Statuses",
+        "Companies Applied",
+        "Position Types",
+        "Positions Applied",
+        "Your Skills"
+    ]
+
+    fetch(webAppURL, {method: 'POST'})
+    .then( (c) => {
+        for(let i = 0; i < charts.length; i++){
+            document.getElementById("chart" + i).src = baseImgSrc + charts[i] + baseExt;
+        }
+        })
+    .catch( (e) =>{
+        console.error(e);
+    })
+}
+
+
+document.getElementById("refreshData").addEventListener("click", () => {
+    window.location.reload();
+})
+
+getCharts()
+</script>
+
 {% endblock %}
