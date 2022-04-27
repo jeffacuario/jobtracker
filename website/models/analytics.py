@@ -1,3 +1,5 @@
+import shutil
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -73,10 +75,24 @@ def counts_chart(data):
 
 def apps_chart(data):
     """ Generate app data
-
-        Debatable: Word cloud?
     """
-    app_in_depth = [app.to_dict() for app in data["applications"]]
+    chart_names = [
+        "Positions Applied",
+        "Application Statuses",
+        "Position Types",
+        "Companies Applied"
+    ]
+    try:
+        app_in_depth = [app.to_dict() for app in data["applications"]]
+    except KeyError:
+        # No chart can be created if at least one "application" collection does not exist.
+        # This defends against the page crash error.
+        source = "website/static/images/inf-load-free.gif"
+
+        for each_chart in chart_names:
+            destin = 'website/static/images/' + each_chart + '.png'
+            shutil.copyfile(source, destin)
+        return
 
     positions, dates, types, status, companies = {}, {}, {}, {}, {}
     for each_app in app_in_depth:
@@ -86,10 +102,11 @@ def apps_chart(data):
         aggregator_dict_app_chart("status", status, each_app)
         aggregator_dict_app_chart("company", companies, each_app)
 
-    plot_creator(positions, "Positions Applied")
-    plot_creator(status, "Application Statuses")
-    plot_creator(types, "Position Types")
-    plot_creator(companies, "Companies Applied")
+    # Due to names are locally managed
+    plot_creator(positions, chart_names[0])
+    plot_creator(status, chart_names[1])
+    plot_creator(types, chart_names[2])
+    plot_creator(companies, chart_names[3])
 
 
 def apps_active_data_chart(data):
