@@ -1,118 +1,89 @@
 nav {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .navbar-collapse {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
-.table-header, .modal-action{
-    text-align: right;
+.table-header,
+.modal-action {
+  text-align: right;
 }
 
 .modal-body {
-    text-align: left;
+  text-align: left;
 }
 
 .total-count {
-    margin-right: 10px;
-    font-weight: 700;
+  margin-right: 10px;
+  font-weight: 700;
 }
 
 .no-items {
-    text-align: center;
-    margin-top: 15%;
+  text-align: center;
+  margin-top: 15%;
 }
 
 
 /************* *************    Landing Page  ************* *************/
 
 /**
- * General
- */
-
-a {
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-a:hover {
-    color: #0693e3;
-}
-
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 60px;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.5px;
-}
-
-h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-/**
  * Navigation - Job Tracker
  */
 .navbar-brand>a {
-    color: #d73f09;
-    font-size: 40px;
-    font-weight: 800;
-    margin-left: 25px;
-    font-family: 'Montserrat', sans-serif;
+  color: #d73f09;
+  font-weight: 800;
+  margin-left: 25px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 50px;
+}
+
+.navbar-brand a:hover {
+  color: #0693e3;
 }
 
 .nav-logo-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 /**
  * Navigation - Sign in & Get Started
  */
 .nav-container {
-    display: flex;
-    align-items: center;
-    height: 80px;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .nav-btn-1 {
-    margin-left: 30px;
-    color: #fff;
-    line-height: 2;
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 17px;
+  margin-left: 30px;
+  color: #0e0000;
+  line-height: 2.75;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-decoration: none;
 }
 
 .nav-btn-2 {
-    margin-left: 30px;
-    margin-right: 25px;
-    background-color: #d73f09;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 550;
-    line-height: 1.25;
-    padding: 10px 20px;
+  margin-left: 30px;
+  margin-right: 25px;
+  background-color: #d73f09;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  padding: 8px 20px;
 }
 
 .nav-btn-2:hover {
-    background-color: #fff;
-    color: #0693e3;
+  background-color: #fff;
+  color: #0693e3;
 }
 
 /**
@@ -120,56 +91,63 @@ h3 {
  */
 
 .bg-cover {
-    background-size: cover;
-    background-position: center center;
+  background-size: cover;
+  background-position: center center;
 }
 
 .bg-section {
-    position: relative;
-    overflow: hidden;
-    min-height: 922px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 345px;
+  padding-bottom: 345px;
 }
 
 /**
  * Background content
  */
 .bg-content {
-    position: absolute;
-    left: 0;
-    top: 40%;
-    transform: translateY(-50%);
-    line-height: 1;
+  position: absolute;
+  left: 0;
+  top: 30%;
 }
 
-.bg-section h1 {
-    line-height: 84px;
-    color: #fff;
-    margin-left: 30px;
-    margin-right: 25px;
+.bg-container h1 {
+  line-height: 75px;
+  color: #fff;
+  margin-left: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
-.bg-section h2 {
-    line-height: 20px;
-    color: #fff;
-    margin-left: 30px;
-    margin-right: 25px;
-    margin-top: 10px;
+.bg-container h2 {
+  line-height: 20px;
+  color: #fff;
+  margin-left: 30px;
+  margin-right: 25px;
+  margin-top: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
 }
 
 .bg-btn {
-    background-color: #d73f09;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 550;
-    padding: 10px 20px;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 25px;
+  background-color: #d73f09;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 7px 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 25px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bg-btn:hover {
-    background-color: #fff;
-    color: #0693e3;
+  background-color: #fff;
+  color: #0693e3;
 }
 
 /**
@@ -177,84 +155,101 @@ h3 {
  */
 
 .container {
-    margin-top: 100px;
+  margin-top: 60px;
 }
 
 .companies-container {
-    margin-top: 30px;
+  margin-top: 10px;
 }
 
 .companies-section-h1 {
-    font-weight: 800;
-    font-size: 45px;
-    color: #000;
-    letter-spacing: -1px;
+  font-weight: 800;
+  font-size: 45px;
+  color: #000;
+  letter-spacing: -1px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.text-secondary {
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
 }
 
 .companies-box {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    border: 1px solid #dedede;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #dedede;
 }
 
 .company-content-logo {
-    display: block;
-    width: 200px;
-    height: 100px;
-    background-size: cover;
-    background-position: center;
+  display: block;
+  width: 200px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
 }
 
 .company-content-name {
-    display: block;
-    margin-top: 10px;
-    color: #000;
-    transition: 0.3s;
-    transition-property: color;
-    text-decoration: none;
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  text-decoration: none;
 }
 
 .company-content-name:hover {
-    color: #0969C3;
+  color: #0969C3;
 }
 
 .company-content-description {
-    font-size: 15px;
-    margin-top: 10px;
+  font-size: 15px;
+  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.company-content-description>a {
+  color: #486fef;
+  text-decoration: none;
 }
 
 .company-content-openjobs {
-    font-size: 14px;
-    font-weight: 500;
-    color: #424242;
-    opacity: 0.7;
-    transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+  color: #424242;
+  opacity: 0.7;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .company-content-openjobs:hover {
-    color: #0969C3;
-    opacity: 1;
+  color: #0969C3;
+  opacity: 1;
 }
 
 .nav-btn-3 {
-    margin-top: 35px;
-    text-align: center;
-    margin-left: 30px;
-    margin-right: 25px;
-    background-color: black;
-    color: #fff;
-    line-height: 1.25;
-    padding: 10px 20px;
+  margin-top: 35px;
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 25px;
+  background-color: black;
+  color: #fff;
+  line-height: 1.25;
+  padding: 5px 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .nav-btn-3:hover {
-    background-color: #fff;
-    color: #0693e3;
+  background-color: #fff;
+  color: #0693e3;
+}
+
+.companies-content>a {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
 }
 
 /**
@@ -263,41 +258,44 @@ h3 {
 
 
 .cta-container {
-    width: 80%;
-    padding-right: .75rem;
-    padding-left: .75rem;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: white;
-    border-radius: 25px;
-    padding-bottom: 60px;
-    padding-top: 60px;
-    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.10);
+  width: 80%;
+  padding-right: .75rem;
+  padding-left: .75rem;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  border-radius: 25px;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.10);
 }
 
 .cta-section-h2 {
-    font-weight: 700;
-    font-size: 48px;
-    letter-spacing: -1px;
-    color: #000;
-    text-align: center;
-    padding-top: 20px;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: -1px;
+  color: #000;
+  text-align: center;
+  padding-top: 20px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .cta-section-p {
-    text-align: center;
-    padding-top: 40px;
-    font-size: 1.25rem;
+  text-align: center;
+  padding-top: 40px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .cta-section-w {
-    text-align: center;
-    font-size: 2.25rem;
+  text-align: center;
+  font-size: 33px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .cta-btn {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 /**
@@ -306,40 +304,229 @@ h3 {
 
 
 .footer-section {
-    font-size: 16px;
-    margin-top: 100px;
+  font-size: 16px;
+  margin-top: 100px;
 }
 
 .footer-section-bottom {
-    padding: 15px 0;
-    background-color: #d73f09;
+  padding: 15px 0;
+  background-color: #d73f09;
 }
 
 .footer-container {
-    width: 100%;
+  width: 100%;
 }
 
 .text-body {
-    color: #000;
-    margin-left: 425px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+  color: #000;
+  margin-left: 425px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
 .footer-icon-lists ul {
-    display: flex;
-    margin-left: 650px;
+  display: flex;
+  margin-left: 650px;
 }
 
 .footer-icon-lists ul li {
-    margin-top: 8px;
-    margin-left: 20px;
-    margin-bottom: -8px;
+  margin-top: 8px;
+  margin-left: 20px;
+  margin-bottom: -8px;
 }
 
 .footer-icon-lists ul li a {
-    color: #000;
-    font-size: 18px;
+  color: #000;
+  font-size: 18px;
 }
 
 /*************  *************   End of Landing Page   ************* *************/
+
+/************* *************    Settings Page  ************* *************/
+
+/**
+ * Navigation
+ */
+
+.header-nav {
+  background-color: rgba(244, 246, 247, 0.85);
+}
+
+/**
+   * Navigation - Job Tracker
+   */
+
+.navbar-brand-setting>a {
+  color: #d73f09;
+  font-size: 40px;
+  font-weight: 800;
+  margin-left: 25px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+}
+
+.navbar-brand-setting a:hover {
+  color: #0e0000;
+}
+
+.nav-logo-container-setting {
+  display: flex;
+  align-items: center;
+}
+
+/**
+  * Navigation - menu
+  */
+.nav-container-setting {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nav-btn-s {
+  margin-left: 30px;
+  margin-right: 10px;
+  color: #0e0000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.nav-btn-s:hover {
+  color: #d73f09;
+}
+
+/**
+  * Background
+  */
+
+.bg-section-setting {
+  background-position: center center;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* https://coder-coder.com/background-image-opacity/ */
+.bg-section-setting::before {
+  position: absolute;
+  content: " ";
+  background: rgba(241, 243, 248, 0.85);
+  opacity: 0.7;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+
+}
+
+.bg-section-setting h2 {
+  font-size: 45px;
+  color: #0e0000;
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+}
+
+.bg-section-setting p {
+  padding: 4px;
+  border: 3px solid rgba(106, 110, 119, 0.5);
+  border-radius: 30px;
+  color: #0c0202;
+  display: inline-block;
+  position: relative;
+  margin: 10px 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.bg-area {
+  width: 100%;
+  height: 100%;
+}
+
+/**
+  * User profile section
+  */
+
+.user-section {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+/**
+  * User profile section - profile photo
+  */
+
+.user-profile {
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.user-profile img {
+  border-radius: 100px;
+  margin-bottom: 3px;
+}
+
+.user-profile button {
+  margin-bottom: 20px;
+  margin-left: 30px;
+  margin-right: 25px;
+  background-color: #d73f09;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.25;
+  padding: 5px 10px;
+  border-radius: 30px;
+  border: #d73f09;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-profile h3 {
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+/**
+  * User profile section - basic info
+  */
+
+.user-info-section {
+  margin-bottom: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  padding: 20px 30px;
+  border-radius: 15px;
+}
+
+.user-info-section h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.user-content-category {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(97, 88, 88);
+}
+
+.user-content-input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+/************* *************    End of Settings Page  ************* *************/
