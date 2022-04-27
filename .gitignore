@@ -15,3 +15,7 @@ build/
 *.egg-info/
 
 private/
+
+.idea/
+.vscode/
+.DS_Store

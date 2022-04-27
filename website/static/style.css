@@ -23,3 +23,326 @@ nav {
     text-align: center;
     margin-top: 15%;
 }
+
+.table-bordered {
+    margin-top: 1%;
+}
+
+/************* *************    Landing Page  ************* *************/
+
+/**
+ * General
+ */
+
+a {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+a:hover {
+    color: #0693e3;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/**
+ * Navigation - Job Tracker
+ */
+.navbar-brand>a {
+    color: #d73f09;
+    font-size: 40px;
+    font-weight: 800;
+    margin-left: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/**
+ * Navigation - Sign in & Get Started
+ */
+.nav-container {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav-btn-1 {
+    margin-left: 30px;
+    color: #fff;
+    line-height: 2;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.nav-btn-2 {
+    margin-left: 30px;
+    margin-right: 25px;
+    background-color: #d73f09;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 550;
+    line-height: 1.25;
+    padding: 10px 20px;
+}
+
+.nav-btn-2:hover {
+    background-color: #fff;
+    color: #0693e3;
+}
+
+/**
+ * Background image
+ */
+
+.bg-cover {
+    background-size: cover;
+    background-position: center center;
+}
+
+.bg-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 922px;
+}
+
+/**
+ * Background content
+ */
+.bg-content {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    line-height: 1;
+}
+
+.bg-section h1 {
+    line-height: 84px;
+    color: #fff;
+    margin-left: 30px;
+    margin-right: 25px;
+}
+
+.bg-section h2 {
+    line-height: 20px;
+    color: #fff;
+    margin-left: 30px;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.bg-btn {
+    background-color: #d73f09;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 550;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 25px;
+}
+
+.bg-btn:hover {
+    background-color: #fff;
+    color: #0693e3;
+}
+
+/**
+ * Featured Companies
+ */
+
+.container {
+    margin-top: 100px;
+}
+
+.companies-container {
+    margin-top: 30px;
+}
+
+.companies-section-h1 {
+    font-weight: 800;
+    font-size: 45px;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+.companies-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 1px solid #dedede;
+}
+
+.company-content-logo {
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.company-content-name {
+    display: block;
+    margin-top: 10px;
+    color: #000;
+    transition: 0.3s;
+    transition-property: color;
+    text-decoration: none;
+}
+
+.company-content-name:hover {
+    color: #0969C3;
+}
+
+.company-content-description {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.company-content-openjobs {
+    font-size: 14px;
+    font-weight: 500;
+    color: #424242;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.company-content-openjobs:hover {
+    color: #0969C3;
+    opacity: 1;
+}
+
+.nav-btn-3 {
+    margin-top: 35px;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 25px;
+    background-color: black;
+    color: #fff;
+    line-height: 1.25;
+    padding: 10px 20px;
+}
+
+.nav-btn-3:hover {
+    background-color: #fff;
+    color: #0693e3;
+}
+
+/**
+ * Call to action
+ */
+
+
+.cta-container {
+    width: 80%;
+    padding-right: .75rem;
+    padding-left: .75rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    border-radius: 25px;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.10);
+}
+
+.cta-section-h2 {
+    font-weight: 700;
+    font-size: 48px;
+    letter-spacing: -1px;
+    color: #000;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.cta-section-p {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 1.25rem;
+}
+
+.cta-section-w {
+    text-align: center;
+    font-size: 2.25rem;
+}
+
+.cta-btn {
+    display: flex;
+    justify-content: center;
+}
+
+/**
+ * Footer
+ */
+
+
+.footer-section {
+    font-size: 16px;
+    margin-top: 100px;
+}
+
+.footer-section-bottom {
+    padding: 15px 0;
+    background-color: #d73f09;
+}
+
+.footer-container {
+    width: 100%;
+}
+
+.text-body {
+    color: #000;
+    margin-left: 425px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.footer-icon-lists ul {
+    display: flex;
+    margin-left: 650px;
+}
+
+.footer-icon-lists ul li {
+    margin-top: 8px;
+    margin-left: 20px;
+    margin-bottom: -8px;
+}
+
+.footer-icon-lists ul li a {
+    color: #000;
+    font-size: 18px;
+}
+
+/*************  *************   End of Landing Page   ************* *************/

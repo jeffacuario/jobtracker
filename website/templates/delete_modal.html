@@ -1,0 +1,20 @@
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#myModal{{n}}" class="trigger-btn" data-toggle="modal">Delete</a>
+
+<!-- Modal HTML -->
+<div id="myModal{{n}}" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<h4 class="modal-title w-100">Are you sure you want to delete {{entry}}?</h4>	
+			</div>
+			<div class="modal-body">
+				<p>Do you really want to delete these records? This process cannot be undone.</p>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<a href={{val}}><button type="button" class="btn btn-danger">Delete</button></a>
+			</div>
+		</div>
+	</div>
+</div>     

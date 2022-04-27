@@ -20,8 +20,20 @@ Create a directory called "private" in the project directory
 
 `mkdir private`
 
-Include `jobtrack-39d73-firebase-adminsdk-wpmtz-1bb461d761.json` in the `private` directory.
+Include `credentials.json` in the `private` directory.
 
-Run the application
+Include `jobtrack-pyrebase-credentials.json` in the `private` directory.
+
+Run the application locally
 
 `python3 main.py`
+
+## Building and running with Docker
+
+Install Docker from https://docs.docker.com/get-docker/
+
+Build the image by running `docker image build -t jobtracker .`
+
+Run the container by running `docker run -p 5000:5000 -d jobtracker`
+
+Open your web browser and navigate to http://localhost:5000/
