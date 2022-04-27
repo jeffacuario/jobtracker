@@ -1,5 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Contacts{% endblock %}
+{% block title %}Skills{% endblock %}
 {% block content %}
-<h1>Skills</h1>
+
+<!-- Skills Table -->
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2><b>Skills</b></h2>
+            </div>
+            <div class="col-sm-4 table-header">
+                <span class="total-count">
+                    Total: {{skills | length}} skills
+                </span>
+                {% include "skills/skills_modal.html" %}
+            </div>
+        </div>
+    </div>
+
+    <!-- handle no skills -->
+    {% if skills|length == 0 %}
+    <div class="no-items">
+        <p>No Skills Yet...</p>
+        {% include "skills/skills_modal.html" %}
+    </div>
+    {% else %}
+        {% include "skills/skills_table.html" %}
+    {% endif %}
+
+</div>
+
 {% endblock %}

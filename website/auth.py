@@ -31,7 +31,7 @@ def login():
 
         try:
             user = fb_auth.sign_in_with_email_and_password(username, password)
-            print(user)
+            # print(user)
             session.clear()
             session['user_id'] = user['localId']
             session['token_id'] = user['idToken']
@@ -39,7 +39,7 @@ def login():
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
-            print(error)
+            # print(error)
             if error == 'INVALID PASSWORD' or error == 'EMAIL_NOT_FOUND':
                 error_message = "You have entered an invalid email or password"
             return render_template("auth/login.html", error_message=error_message)  # noqa E501
@@ -62,10 +62,10 @@ def register():
             user = fb_auth.create_user_with_email_and_password(email, password)
             fa_auth.update_user(user.get("localId"), display_name=username)
         except requests.exceptions.HTTPError as e:
-            print(e)
+            # print(e)
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
-            print(error)
+            # print(error)
             if error == 'EMAIL_EXISTS':
                 error_message = "Email already registered"
             elif error == 'WEAK_PASSWORD : Password should be at least 6 characters':  # noqa E501
@@ -88,11 +88,11 @@ def load_logged_in_user():
     else:
         try:
             g.user = fb_auth.get_account_info(token_id)
-            print(g.user)
+            # print(g.user)
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
-            print(error)
+            # print(error)
             if error == 'INVALID_ID_TOKEN':
                 session.clear()
                 return redirect(url_for("auth.logout"))

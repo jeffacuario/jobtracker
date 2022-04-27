@@ -11,21 +11,52 @@ def db_init():
     fa.initialize_app(cred)
 
 
-def getJobs():
-    db = firestore.client()
-    applications = db.collection('applications')
+def dbConn(collection):
+    """Takes a collection and connects to firestore.Returns the collection"""
+    return firestore.client().collection(collection)
 
-    all_jobs = []
-    for doc in applications.stream():
+
+def allDocs(col):
+    """Takes a collection and returns list of dictionary"""
+    all_docs = []
+    for doc in col.stream():
         x = doc.to_dict()
         x['id'] = doc.id
-        all_jobs.append(x)
+        all_docs.append(x)
+    return all_docs
 
-    return all_jobs
+
+def getJobs():
+    """Returns all jobs"""
+    return allDocs(dbConn('applications'))
 
 
 def addJob(val):
+    """Adds job to firebase applications collection"""
     values = json.dumps(val.__dict__)
-    db = firestore.client()
-    db.collection('applications').add(eval(values))
+    dbConn('applications').add(eval(values))
     return "success"
+
+
+def deleteJob(jobID):
+    """Deletes provided jobID from the firebase database"""
+    dbConn('applications').document(jobID).delete()
+    return 'deleted'
+
+
+def getSkills():
+    """Returns all skills"""
+    return allDocs(dbConn('skills'))
+
+
+def addSkill(val):
+    """Adds skill to firebase skills collection"""
+    values = json.dumps(val.__dict__)
+    dbConn('skills').add(eval(values))
+    return "success"   
+
+
+def deleteSkill(skillID):
+    """Deletes provided skillID from the firebase database"""
+    dbConn('skills').document(skillID).delete()
+    return 'deleted' 
