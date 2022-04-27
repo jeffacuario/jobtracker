@@ -6,7 +6,7 @@ import numpy as np
 import website.models.db as db
 
 
-def aggregator_dict_app_chart(attribute, dict, iter_item):
+def aggregator_dict_sum_chart(attribute, dict, iter_item):
     """ Generate dictionary counter"""
     if iter_item[attribute] in dict:
         dict[iter_item[attribute]] += 1
@@ -104,11 +104,11 @@ def apps_chart(data):
 
     positions, dates, types, status, companies = {}, {}, {}, {}, {}
     for each_app in app_in_depth:
-        aggregator_dict_app_chart("position", positions, each_app)
-        aggregator_dict_app_chart("type", types, each_app)
-        aggregator_dict_app_chart("date", dates, each_app)
-        aggregator_dict_app_chart("status", status, each_app)
-        aggregator_dict_app_chart("company", companies, each_app)
+        aggregator_dict_sum_chart("position", positions, each_app)
+        aggregator_dict_sum_chart("type", types, each_app)
+        aggregator_dict_sum_chart("date", dates, each_app)
+        aggregator_dict_sum_chart("status", status, each_app)
+        aggregator_dict_sum_chart("company", companies, each_app)
 
     # Due to names are locally managed
     plot_creator(positions, chart_names[0])
@@ -133,7 +133,7 @@ def skills_chart(data):
 
     skills_freq_count = {}
     for each_skill in skill_in_depth:
-        aggregator_dict_app_chart("skill", skills_freq_count, each_skill)
+        aggregator_dict_sum_chart("skill", skills_freq_count, each_skill)
 
     plot_creator(skills_freq_count, chart_names[0])
 
