@@ -112,6 +112,7 @@ def apps_chart(data):
 def apps_active_data_chart(data):
     pass
 
+
 def skills_chart(data):
     skill_in_depth = [app.to_dict() for app in data["skills"]]
     skills_freq_count = {}
