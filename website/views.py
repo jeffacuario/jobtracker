@@ -61,3 +61,4 @@ def home():
     Render Landing Page
     """
     return render_template("landing.html")
+    
