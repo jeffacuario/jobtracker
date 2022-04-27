@@ -126,7 +126,10 @@ def skills_chart(data):
     chart_names = [
         "Your Skills"
     ]
-    skill_in_depth = chart_collection_defence(data, "skill", chart_names)
+    skill_in_depth = chart_collection_defence(data, "skills", chart_names)
+
+    if not skill_in_depth:
+        return
 
     skills_freq_count = {}
     for each_skill in skill_in_depth:
