@@ -1,0 +1,21 @@
+<!-- Button to trigger modal for skill form-->
+<button type="button" class="btn btn-primary addSkillButton" data-toggle="modal" title="Add a new skill"
+    data-target="#addNewSkill">
+    Add Skill
+</button>
+
+<!-- Skill Modal -->
+<div class="modal fade" id="addNewSkill" tabindex="-1" role="dialog" aria-labelledby="addNewSkillLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewSkillLabel">
+                    Add New Skill
+                </h5>
+            </div>
+            <div class="modal-body">
+                {% include 'skills/skills_form.html' %}
+            </div>
+        </div>
+    </div>
+</div>

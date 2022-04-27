@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Skill</th>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Update/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n in range(skills|length) %}
+        <tr>
+            <td>{{skills[n].skill}}</td>
+            <td>{{skills[n].position}}</td>
+            <td>{{skills[n].company}}</td>
+            <td>
+                <a class="edit" title="Edit" data-toggle="tooltip">Edit</a>
+                {% with val='skills/'+ skills[n].id + '/delete', entry= ''+ skills[n].skill + ' - ' + skills[n].position  %}
+                    {% include 'delete_modal.html'%}
+                {% endwith %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

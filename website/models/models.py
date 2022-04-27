@@ -5,3 +5,10 @@ class Application:
         self.type = type
         self.date = date
         self.status = status
+
+
+class Skill:
+    def __init__(self, skill, position, company):
+        self.skill = skill
+        self.position = position
+        self.company = company
