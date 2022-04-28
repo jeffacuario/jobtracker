@@ -29,7 +29,7 @@ def plot_creator(data_dict, title, lab_y=''):
         x_ls.append('')
         y_ls.append(0)
 
-    plt.bar(x_ls, y_ls, width=0.5)
+    plt.bar(x_ls, y_ls)
     plt.ylabel(lab_y)
     plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
 
@@ -37,6 +37,45 @@ def plot_creator(data_dict, title, lab_y=''):
         x_ls.pop()
     for each_value in range(len(x_ls)):
         plt.text(x=each_value, y=y_ls[each_value], s=y_ls[each_value], ha="center")
+
+    plt.title(title)
+    plt.savefig('website/static/images/' + title + '.png')
+    plt.close()
+
+
+def plot_creator_horizontal(data_dict, title, lab_y=''):
+    """ Generate custom bar charts
+        data_dict = data_dictionary - must be a dictionary
+        title = name of the chart
+        lab_y = label y; default empty
+    """
+    x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
+
+    change_flag = False
+    # Prevent exaggerated size
+    if len(x_ls) == 1:
+        change_flag = True
+        x_ls.append('')
+        y_ls.append(0)
+
+    plt.barh(x_ls, y_ls)
+    plt.ylabel(lab_y)
+    plt.yticks([])
+    plt.xticks(np.arange(0, max(y_ls) + 1, step=1))
+
+    if change_flag:
+        x_ls.pop()
+    for each_value in range(len(x_ls)):
+        plt.text(
+            y=each_value,
+            x=y_ls[each_value],
+            s=x_ls[each_value],
+            ha="center",
+            bbox=dict(
+                boxstyle="square",
+                facecolor="white"
+            )
+        )
 
     plt.title(title)
     plt.savefig('website/static/images/' + title + '.png')
@@ -114,7 +153,7 @@ def apps_chart(data):
     plot_creator(positions, chart_names[0])
     plot_creator(status, chart_names[1])
     plot_creator(types, chart_names[2])
-    plot_creator(companies, chart_names[3])
+    plot_creator_horizontal(companies, chart_names[3])
 
 
 def apps_active_data_chart(data):
