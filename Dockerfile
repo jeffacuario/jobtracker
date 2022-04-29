@@ -16,7 +16,4 @@ RUN python3 -m pip install --upgrade setuptools
 # install the dependencies and packages from the requirements file
 RUN pip3 install -r requirements.txt
 
-# configure the container to run in an executed manner
-ENTRYPOINT [ "python3" ]
-
-CMD [ "main.py" ]
+CMD [ "python3", "main.py" ]
