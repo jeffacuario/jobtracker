@@ -1,5 +1,3 @@
-import shutil
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -120,7 +118,7 @@ def chart_collection_defence(data, target, chart_names):
     try:
         export_dat_list = [chart.to_dict() for chart in data[target]]
         if len(export_dat_list) == 0:
-            faux = data['error123']
+            faux = data['error123']  # noqa: F841
         return export_dat_list
     except KeyError:
         # No chart can be created if at least one "application" collection does not exist.
