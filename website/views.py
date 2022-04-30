@@ -71,7 +71,18 @@ def analytics():
     elif request.method == "GET":
         # Get request
 
-        return render_template("analytics/analytics.html")
+        data = {
+            "charts": [
+                "Entries Recorded",
+                "Application Statuses",
+                "Companies Applied",
+                "Position Types",
+                "Positions Applied",
+                "Your Skills"
+            ]
+        }
+
+        return render_template("analytics/analytics.html", data=data)
 
     return 'Method not allowed', 405
 
@@ -80,7 +91,7 @@ def analytics():
 @login_required
 def analytics_generate():
     """ Acts as a URI for use with JS to fetch - allows refresh."""
-    analysis.generate_charts()
+    analysis.generate_charts(request.json)
     return '', 204
 
 

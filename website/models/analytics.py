@@ -4,16 +4,16 @@ import numpy as np
 import website.models.db as db
 
 
-def generate_charts():
+def generate_charts(chart_names):
     """ Generate charts"""
     data = db.retrieve_all()
     # Will move these to a function once development is confirmed.
     # Reference to matplotlib docs
     # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
 
-    counts_chart(data)
-    apps_chart(data)
-    skills_chart(data)
+    counts_chart(data, chart_names)
+    apps_chart(data, chart_names)
+    skills_chart(data, chart_names)
 
 
 def aggregator_dict_sum_chart(attribute, dict, iter_item):
@@ -129,11 +129,11 @@ def chart_collection_defence(data, target, chart_names):
         return False
 
 
-def counts_chart(data):
+def counts_chart(data, chart_names):
     """ Counts chart - count.png
         Data consists of Applications, Skills, and Contacts entries on record
     """
-    title = 'Entries Recorded'
+    title = chart_names[0]
     data_records_count = [len(data["applications"]), len(data["skills"]), len(data["contacts"])]
 
     if max(data_records_count) == 0:
@@ -152,15 +152,10 @@ def counts_chart(data):
     plt.close()
 
 
-def apps_chart(data):
+def apps_chart(data, chart_names):
     """ Generate app data
     """
-    chart_names = [
-        "Positions Applied",
-        "Application Statuses",
-        "Position Types",
-        "Companies Applied"
-    ]
+    chart_names = chart_names[1:5]
     app_in_depth = chart_collection_defence(data, "applications", chart_names)
 
     if not app_in_depth:
@@ -185,11 +180,9 @@ def apps_active_data_chart(data):
     pass
 
 
-def skills_chart(data):
+def skills_chart(data, chart_names):
     """ Skills charts """
-    chart_names = [
-        "Your Skills"
-    ]
+    chart_names = chart_names[5]
     skill_in_depth = chart_collection_defence(data, "skills", chart_names)
 
     if not skill_in_depth:
