@@ -9,21 +9,21 @@ source: https://icons8.com/preloaders/
 
 {% for i in range(0, 10) %}
     {% if i == 0 %}
-        <div class="" style="display:flex;">
+        <div class="analytics-descriptor">
     {% elif i == 2 %}
         <h2>
             Positions
         </h2>
-        <div class="" style="display:flex;">
+        <div class="analytics-descriptor">
     {% elif i == 5 %}
         <h2>
             Skills
         </h2>
-        <div class="" style="display:flex;">
+        <div class="analytics-descriptor">
     {% endif %}
 
     <div>
-        <img src="static/images/inf-load-free.gif" id="chart{{i}}">
+        <img src="static/images/inf-load-free.gif" class="analytics-chart" id="chart{{i}}">
     </div>
 
     {% if i == 1 %}
