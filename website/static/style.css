@@ -351,6 +351,12 @@ nav {
     display: flex;
 }
 
+.analytics-chart{
+    height: 480px;
+    width: 640px;
+    text-align: center;
+}
+
 /************* *************    End of  Analytics Page  ************* *************/
 
 /************* *************    Settings Page  ************* *************/
