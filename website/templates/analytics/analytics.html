@@ -6,44 +6,34 @@ source: https://icons8.com/preloaders/
 {% block title %}Analytics{% endblock %}
 {% block content %}
 <h1>Analytics</h1>
-<div style="display:flex;">
-    <div>
-        <img src="static/images/inf-load-free.gif" id="chart0">
+
+{% for i in range(0, 10) %}
+    {% if i == 0 %}
+        <div class="analytics-descriptor">
+    {% elif i == 2 %}
+        <h2>
+            Positions
+        </h2>
+        <div class="analytics-descriptor">
+    {% elif i == 5 %}
+        <h2>
+            Skills
+        </h2>
+        <div class="analytics-descriptor">
+    {% endif %}
+
+    <div class="analytics-chart">
+        <img src="static/images/inf-load-free.gif" id="chart{{i}}">
     </div>
 
-    <div>
-        <img src="static/images/inf-load-free.gif" id="chart1">
-    </div>
-</div>
-
-<h2>
-    Positions
-</h2>
-
-<div style="display:flex;">
-    <div>
-        <img src="static/images/inf-load-free.gif" id="chart2">
-    </div>
-    <div>
-        <img src="static/images/inf-load-free.gif" id="chart3">
-    </div>
-    <div>
-        <img src="static/images/inf-load-free.gif" id="chart4">
-    </div>
-</div>
-
-<h2>
-    Skills
-</h2>
-
-<div>
-    <img src="static/images/inf-load-free.gif" id="chart5">
-</div>
-
-<h2>
-    Contacts
-<!--    Count? -->
-</h2>
+    {% if i == 1 %}
+        </div>
+    {% elif i == 4 %}
+        </div>
+    {% elif i == 6 %}
+        </div>
+    {% endif %}
+{% endfor %}
 
 <button id="refreshData">
     Refresh
@@ -53,41 +43,13 @@ source: https://icons8.com/preloaders/
 <!-- Add in a search engine? -->
 </div>
 
-<!-- Need to add in a script block to template -->
-<script>
-function getCharts() {
-    // Generate the charts on demand
-    const generateChart = "chart-gen";
-    const webAppURL = window.location.href + "/generate-charts";
-    const baseImgSrc = "static/images/";
-    const baseExt = ".png";
+{% endblock %}
 
-    const charts = [
-        "count",
-        "Application Statuses",
-        "Companies Applied",
-        "Position Types",
-        "Positions Applied",
-        "Your Skills"
-    ]
-
-    fetch(webAppURL, {method: 'POST'})
-    .then( (c) => {
-        for(let i = 0; i < charts.length; i++){
-            document.getElementById("chart" + i).src = baseImgSrc + charts[i] + baseExt;
-        }
-        })
-    .catch( (e) =>{
-        console.error(e);
-    })
-}
-
+{% block script %}
 
 document.getElementById("refreshData").addEventListener("click", () => {
     window.location.reload();
 })
-
-getCharts()
-</script>
+getCharts({{data.charts | tojson }})
 
 {% endblock %}

@@ -89,7 +89,9 @@
     crossorigin="anonymous"></script>
 
   <!-- Main JavaScript File -->
-  <script type='text/javascript' src='{{ url_for('static', filename='script.js' ) }}'></script>
+  <script type='text/javascript' src="{{ url_for('static', filename='script.js' ) }}"></script>
+  <!--  Custom JS file -->
+  <script>{% block script %}{% endblock %}</script>
 
 </body>
 

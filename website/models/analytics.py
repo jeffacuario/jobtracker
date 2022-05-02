@@ -1,9 +1,19 @@
-import shutil
-
 import matplotlib.pyplot as plt
 import numpy as np
 
 import website.models.db as db
+
+
+def generate_charts(chart_names):
+    """ Generate charts"""
+    data = db.retrieve_all()
+    # Will move these to a function once development is confirmed.
+    # Reference to matplotlib docs
+    # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
+
+    counts_chart(data, chart_names)
+    apps_chart(data, chart_names)
+    skills_chart(data, chart_names)
 
 
 def aggregator_dict_sum_chart(attribute, dict, iter_item):
@@ -12,6 +22,27 @@ def aggregator_dict_sum_chart(attribute, dict, iter_item):
         dict[iter_item[attribute]] += 1
     else:
         dict[iter_item[attribute]] = 1
+
+
+def plot_no_data(title):
+    """ Generate an empty chart with the text "No Data" on center."""
+    plt.bar([], [])
+
+    plt.text(x=0, y=0,
+             s='No Data\nTry adding in some information before returning to this page!',
+             ha='center',
+             va='center',
+             bbox=dict(
+                boxstyle="square",
+                facecolor="white"
+                ))
+
+    plt.yticks([])
+    plt.xticks([])
+
+    plt.title(title)
+    plt.savefig('website/static/images/' + title + '.png')
+    plt.close()
 
 
 def plot_creator(data_dict, title, lab_y=''):
@@ -29,7 +60,7 @@ def plot_creator(data_dict, title, lab_y=''):
         x_ls.append('')
         y_ls.append(0)
 
-    plt.bar(x_ls, y_ls, width=0.5)
+    plt.bar(x_ls, y_ls)
     plt.ylabel(lab_y)
     plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
 
@@ -43,38 +74,71 @@ def plot_creator(data_dict, title, lab_y=''):
     plt.close()
 
 
-def generate_charts():
-    """ Generate charts"""
-    data = db.retrieve_all()
-    # Will move these to a function once development is confirmed.
-    # Reference to matplotlib docs
-    # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
+def plot_creator_horizontal(data_dict, title, lab_y=''):
+    """ Generate custom bar charts
+        data_dict = data_dictionary - must be a dictionary
+        title = name of the chart
+        lab_y = label y; default empty
+    """
+    x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
 
-    counts_chart(data)
-    apps_chart(data)
-    skills_chart(data)
+    change_flag = False
+    # Prevent exaggerated size
+    if len(x_ls) == 1:
+        change_flag = True
+        x_ls.append('')
+        y_ls.append(0)
+
+    plt.barh(x_ls, y_ls)
+    plt.ylabel(lab_y)
+    plt.yticks([])
+    plt.xticks(np.arange(0, max(y_ls) + 1, step=1))
+
+    if change_flag:
+        x_ls.pop()
+    for each_value in range(len(x_ls)):
+        plt.text(
+            y=each_value,
+            x=y_ls[each_value],
+            s=x_ls[each_value],
+            ha="center",
+            bbox=dict(
+                boxstyle="square",
+                facecolor="white"
+            )
+        )
+
+    plt.title(title)
+    plt.savefig('website/static/images/' + title + '.png')
+    plt.close()
 
 
 def chart_collection_defence(data, target, chart_names):
     """ In the event of a missing collection, chart creation will not be compromised entirely."""
     try:
-        return [chart.to_dict() for chart in data[target]]
+        export_dat_list = [chart.to_dict() for chart in data[target]]
+        if len(export_dat_list) == 0:
+            faux = data['error123']  # noqa: F841
+        return export_dat_list
     except KeyError:
         # No chart can be created if at least one "application" collection does not exist.
         # This defends against the page crash error.
-        source = "website/static/images/inf-load-free.gif"
 
         for each_chart in chart_names:
-            destin = 'website/static/images/' + each_chart + '.png'
-            shutil.copyfile(source, destin)
+            plot_no_data(each_chart)
         return False
 
 
-def counts_chart(data):
+def counts_chart(data, chart_names):
     """ Counts chart - count.png
         Data consists of Applications, Skills, and Contacts entries on record
     """
+    title = chart_names[0]
     data_records_count = [len(data["applications"]), len(data["skills"]), len(data["contacts"])]
+
+    if max(data_records_count) == 0:
+        plot_no_data(title)
+        return
 
     plt.bar(['Applications', 'Skills', 'Contacts'], data_records_count)
     plt.ylabel('Count')
@@ -83,20 +147,15 @@ def counts_chart(data):
     for each_value in range(len(data_records_count)):
         plt.text(x=each_value, y=data_records_count[each_value], s=data_records_count[each_value], ha="center")
 
-    plt.title('Entries Recorded')
-    plt.savefig('website/static/images/count.png')
+    plt.title(title)
+    plt.savefig('website/static/images/' + title + '.png')
     plt.close()
 
 
-def apps_chart(data):
+def apps_chart(data, chart_names):
     """ Generate app data
     """
-    chart_names = [
-        "Positions Applied",
-        "Application Statuses",
-        "Position Types",
-        "Companies Applied"
-    ]
+    chart_names = chart_names[1:5]
     app_in_depth = chart_collection_defence(data, "applications", chart_names)
 
     if not app_in_depth:
@@ -114,18 +173,16 @@ def apps_chart(data):
     plot_creator(positions, chart_names[0])
     plot_creator(status, chart_names[1])
     plot_creator(types, chart_names[2])
-    plot_creator(companies, chart_names[3])
+    plot_creator_horizontal(companies, chart_names[3])
 
 
 def apps_active_data_chart(data):
     pass
 
 
-def skills_chart(data):
+def skills_chart(data, chart_names):
     """ Skills charts """
-    chart_names = [
-        "Your Skills"
-    ]
+    chart_names = chart_names[5]
     skill_in_depth = chart_collection_defence(data, "skills", chart_names)
 
     if not skill_in_depth:
