@@ -1,6 +1,7 @@
 from flask import Flask
 from website.models.db import db_init
 
+
 def create_app():
     app = Flask(__name__, template_folder='templates')
     app.config['SECRET_KEY'] = 'kjaskfjkdsj'
