@@ -94,6 +94,7 @@ def analytics_generate():
     analysis.generate_charts(request.json)
     return '', 204
 
+
 @views.route('/')
 def home():
     """Render Landing Page"""
