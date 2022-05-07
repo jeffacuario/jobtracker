@@ -1,6 +1,6 @@
 from firebase_admin import auth as fa_auth
 from distutils.command.config import config  # noqa F401
-from flask import Blueprint, render_template, request, redirect, url_for, g, session,flash  # noqa E501
+from flask import Blueprint, render_template, request, redirect, url_for, g, session  # noqa E501
 import json
 import pyrebase
 import requests
@@ -88,7 +88,7 @@ def load_logged_in_user():
     else:
         try:
             g.user = fb_auth.get_account_info(token_id)
-            # print("g.user:",g.user)
+            # print(g.user)
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']

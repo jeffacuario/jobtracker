@@ -20,6 +20,8 @@ fb_auth = firebase.auth()
 #reference: https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg"])
 
+path_local = "website/static/images/"
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -33,9 +35,10 @@ def update_file():
         file = request.files["file"]
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            file.save(path_local+filename)
             user_uid = session.get("user_id")
             path_on_cloud = "profile_images/" + user_uid + "/"+filename
-            upload = fb_storage.child(path_on_cloud).put("website/static/images/"+filename,session.get("token_id"))
+            upload = fb_storage.child(path_on_cloud).put(path_local+filename,session.get("token_id"))
             image_url = fb_storage.child(path_on_cloud).get_url(upload['downloadTokens'])
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
             return render_template("settings/settings.html", filename=filename)

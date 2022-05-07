@@ -362,61 +362,6 @@ nav {
 /************* *************    Settings Page  ************* *************/
 
 /**
- * Navigation
- */
-
-/* .header-nav {
-  background-color: rgba(244, 246, 247, 0.85);
-} */
-
-/**
-   * Navigation - Job Tracker
-   */
-
-/* .navbar-brand-setting>a {
-  color: #d73f09;
-  font-size: 40px;
-  font-weight: 800;
-  margin-left: 25px;
-  font-family: 'Montserrat', sans-serif;
-  text-decoration: none;
-}
-
-.navbar-brand-setting a:hover {
-  color: #0e0000;
-}
-
-.nav-logo-container-setting {
-  display: flex;
-  align-items: center;
-} */
-
-/**
-  * Navigation - menu
-  */
-/* .nav-container-setting {
-  display: flex;
-  align-items: center;
-  height: 75px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.nav-btn-s {
-  margin-left: 30px;
-  margin-right: 10px;
-  color: #0e0000;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  text-decoration: none;
-}
-
-.nav-btn-s:hover {
-  color: #d73f09;
-} */
-
-/**
   * Background
   */
 
