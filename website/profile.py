@@ -18,9 +18,9 @@ fb_storage = firebase.storage()
 fb_auth = firebase.auth()
 
 #reference: https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
-ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg"])
+ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg", "webp"])
 
-path_local = "website/static/images/"
+path_local = "website/static/images/profile/"
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -42,21 +42,24 @@ def update_file():
             image_url = fb_storage.child(path_on_cloud).get_url(upload['downloadTokens'])
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
             return render_template("settings/settings.html", filename=filename)
+        else:
+            # flash("Allowed image types are png, jpg, jpeg, webp")
+            return redirect(url_for("profile.settings_page"))
     if 'inputEmail' in request.form:
         email = request.form['inputEmail']
         fa_auth.update_user(session.get("user_id"),email = email)
-        flash("Your email has been updated, please log in again")
+        # flash("Your email has been updated, please log in again")
         return redirect(url_for("auth.login"))
     if 'inputPassword' in request.form:
         password = request.form['inputPassword']
         fa_auth.update_user(session.get("user_id"),password = password)
-        flash("Your password has been updated, please log in again")
+        # flash("Your password has been updated, please log in again")
         return redirect(url_for("auth.login"))
 
 @profile.route("/display/<filename>")
 def display_image(filename):
-    return redirect(url_for("static", filename="images/" + filename))
+    return redirect(url_for("static", filename="images/profile/" + filename))
 
 @profile.route("/display")
 def display_default():
-    return redirect(url_for("static", filename="images/photo_icon.jpeg"))
+    return redirect(url_for("static", filename="images/profile/photo_icon.jpeg"))
