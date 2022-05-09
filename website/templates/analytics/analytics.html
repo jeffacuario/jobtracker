@@ -26,11 +26,7 @@ source: https://icons8.com/preloaders/
         <img src="static/images/inf-load-free.gif" id="chart{{i}}">
     </div>
 
-    {% if i == 1 %}
-        </div>
-    {% elif i == 4 %}
-        </div>
-    {% elif i == 6 %}
+    {% if i in [1, 4, 6] %}
         </div>
     {% endif %}
 {% endfor %}
