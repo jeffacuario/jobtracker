@@ -11,11 +11,10 @@
     </div>
     <div class="mb-3">
         <label for="type" class="form-label" name="type">Type*</label>
-        <select name="type" class="form-control">
-            <option selected>Select Type...</option>
-            <option>Full-Time</option>
-            <option>Part-Time</option>
-            <option>Internship</option>
+        <select name="type" class="form-control" >
+            {% for type in typeList %}
+                <option>{{type}}</option>
+            {% endfor %}
         </select>
     </div>
     <div class="mb-3">
@@ -23,6 +22,7 @@
         <input type="text" class="form-control" id="status" aria-describedby="statusHelp" name="status"
             placeholder="Enter Status" />
     </div>
+
     <div class="modal-action">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>

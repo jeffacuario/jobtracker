@@ -1,19 +1,23 @@
-<form action="/skills" method="POST">
+<form action="skills/{{entry.id}}/update" method="POST">
     <div class="mb-3">
         <label for="skill" class="form-label">Skill*</label>
         <input type="text" class="form-control" id="skill" aria-describedby="skillHelp"
-            name="skill" placeholder="Enter Skill" />
+            name="skill" value="{{entry.skill}}" />
     </div>
     <div class="mb-3">
         <label for="position" class="form-label" name="position" >Position*</label>
         <select name="position" class="form-control">
+            <option value="{{entry}}" selected>{{entry.position}}-{{entry.company}}, {{entry.type}}</option>
             {% for n in jobs %}
-                <option value="{{n}}">{{n.position}}-{{n.company}}, {{n.type}}</option>
-            {%endfor%}
+                {% if n.company != entry.company and n.position != entry.position and n.type != entry.type  %}
+                    <option value="{{n}}">{{n.position}}-{{n.company}}, {{n.type}}</option>
+                {% endif %}
+            {% endfor %}
         </select>
     </div>
+
     <div class="modal-action">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </div>
 </form>

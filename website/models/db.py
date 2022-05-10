@@ -16,19 +16,19 @@ def dbConn(collection):
     return firestore.client().collection(collection)
 
 
-def allDocs(col):
-    """Takes a collection and returns list of dictionary"""
+def allDocs(col, userID):
+    """Takes a collection and userID and returns list of the User's documents"""
     all_docs = []
     for doc in col.stream():
         x = doc.to_dict()
-        x['id'] = doc.id
-        all_docs.append(x)
+        if userID == x['userID']:
+            x['id'] = doc.id
+            all_docs.append(x)
     return all_docs
 
-
-def getJobs():
-    """Returns all jobs"""
-    return allDocs(dbConn('applications'))
+def getJobs(userID):
+    """Returns all user jobs"""
+    return allDocs(dbConn('applications'), userID)
 
 
 def addJob(val):
@@ -38,15 +38,37 @@ def addJob(val):
     return "success"
 
 
-def deleteJob(jobID):
+def deleteJob(jobID, userID):
     """Deletes provided jobID from the firebase database"""
     dbConn('applications').document(jobID).delete()
+    for item in getSkills(userID):
+        if item['posID'] == jobID:
+            deleteSkill(item['id'])
     return 'deleted'
 
 
-def getSkills():
-    """Returns all skills"""
-    return allDocs(dbConn('skills'))
+def updateJob(jobID, data, userID):
+    """Updates provided jobID from the firebase database"""
+    before = dbConn('applications').document(jobID).get().to_dict()
+    dbConn('applications').document(jobID).update(data)
+
+    # handle change in position, company, or type
+    if before['position'] != data['position'] or before['company'] != data['company'] or before['type'] != data['type']:
+        for item in getSkills(userID):
+            if item['posID'] == jobID:
+                dbConn('skills').document(item['id']).update(
+                    {
+                        'position': data['position'],
+                        'company': data['company'], 
+                        'type': data['type']
+                    }
+                )
+    return 'updated'
+
+
+def getSkills(userID):
+    """Returns all user skills"""
+    return allDocs(dbConn('skills'), userID)
 
 
 def addSkill(val):
@@ -60,6 +82,13 @@ def deleteSkill(skillID):
     """Deletes provided skillID from the firebase database"""
     dbConn('skills').document(skillID).delete()
     return 'deleted'
+
+
+def updateSkill(skillID, data):
+    """Updates provided skillID from the firebase database"""
+    values = json.dumps(data.__dict__)
+    dbConn('skills').document(skillID).update(eval(values))
+    return 'updated'
 
 
 def retrieve_all():

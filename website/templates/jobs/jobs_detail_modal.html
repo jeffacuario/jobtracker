@@ -1,0 +1,20 @@
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#editModal{{n}}" class="trigger-btn" data-toggle="modal">Edit</a>
+
+<!-- Modal HTML -->
+<div id="editModal{{n}}" class="modal fade">
+	<div class="modal-dialog modal-confirm modal-lg">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<h4 class="modal-title w-100">{{entry.position}}</h4>
+				<h2 class="modal-title w-100">{{entry.company}}</h2>
+			</div>
+
+			<div class="modal-body">
+				<div class="container-fluid">
+					{% include 'jobs/jobs_detail_form.html' %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
