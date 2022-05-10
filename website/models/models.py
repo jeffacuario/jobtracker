@@ -37,4 +37,3 @@ class Skill:
         except Exception:
             print('Skills: handling userID')
             self.userID = x['userID']
-            

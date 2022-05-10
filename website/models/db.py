@@ -26,6 +26,7 @@ def allDocs(col, userID):
             all_docs.append(x)
     return all_docs
 
+
 def getJobs(userID):
     """Returns all user jobs"""
     return allDocs(dbConn('applications'), userID)
@@ -59,7 +60,7 @@ def updateJob(jobID, data, userID):
                 dbConn('skills').document(item['id']).update(
                     {
                         'position': data['position'],
-                        'company': data['company'], 
+                        'company': data['company'],
                         'type': data['type']
                     }
                 )
