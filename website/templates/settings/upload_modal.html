@@ -1,0 +1,37 @@
+<!-- upload profile picture modal -->
+<div class="modal" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="updatePictureLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="updatePictureLabel">Select profile picture</h5>
+				<button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+			</div>
+			<br>
+			{% if filename %}
+			<div>
+				<img src="{{ url_for('profile.display_image', filename=filename) }}">
+			</div>
+			{% elif g.user['users'][0]['photoUrl'] %}
+			<div>
+				<img src="{{g.user['users'][0]['photoUrl']}}">
+			</div>
+			{%else%}
+			<div>
+				<img src="{{ url_for('profile.display_default') }}">
+			</div>
+			{% endif %}
+			<br>
+			<form method="post" enctype="multipart/form-data">
+				<dl>
+					<p>
+						<input type=file name=file>
+					</p>
+				</dl>
+				<p>
+					<input type=submit value=Upload>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>

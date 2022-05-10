@@ -95,13 +95,6 @@ def analytics_generate():
     return '', 204
 
 
-@views.route('/settings')
-@login_required
-def settings():
-    """Render Settings Page"""
-    return render_template("settings/settings.html")
-
-
 @views.route('/')
 def home():
     """Render Landing Page"""
