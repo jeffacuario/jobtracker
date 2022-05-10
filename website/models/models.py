@@ -8,15 +8,18 @@ class Application:
         self.userID = data['userID']
         try:
             self.url = data['url']
-        except:
+        except Exception:
+            print('url does not exist, setting url to default value of 0')
             self.url = 0
         try:
             self.location = data['location']
-        except:
+        except Exception:
+            print('location does not exist, setting location to default value of 0')
             self.location = 0
         try:
             self.notes = data['notes']
-        except:
+        except Exception:
+            print('notes does not exist, setting notes to default value of 0')
             self.notes = 0
 
 
@@ -31,6 +34,7 @@ class Skill:
         self.posID = x['id']
         try:
             self.userID = data['userID']
-        except:
+        except Exception:
+            print('Skills: handling userID')
             self.userID = x['userID']
             
