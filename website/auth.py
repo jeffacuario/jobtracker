@@ -77,6 +77,7 @@ def register():
 
     return render_template('auth/register.html')
 
+
 @auth.route('/reset', methods=['POST', 'GET'])
 def reset():
     """
@@ -84,18 +85,15 @@ def reset():
     """
     if request.method == 'POST':
         email = request.form['inputEmail']
-        
         try:
             fb_auth.send_password_reset_email(email)
             return redirect(url_for("auth.login"))
-        
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
             if error == 'EMAIL_NOT_FOUND':
                 error_message = "Email not found"
-            return render_template("auth/reset.html", error_message=error_message)
-    
+            return render_template("auth/reset.html", error_message=error_message)  # noqa E501
     return render_template('auth/reset.html')
 
 
