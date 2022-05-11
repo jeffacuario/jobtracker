@@ -1,0 +1,42 @@
+<!-- update user email modal -->
+<script>
+	$(document).ready(function () {
+		$('.open-modal').click(function () {
+			$('#updateEmail').modal({
+				backdrop: 'static'
+			});
+		});
+	});
+</script>
+<div id="updateEmail" class="modal fade" tabindex="-1" aria-labelledby="updateEmailLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="updateEmailLabel">Edit email</h5>
+				<button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="inputEmail" class="col-form-label">Current email:</label>
+					<div style="margin-top: 10px; font-size: 90%;">
+						{{g.user['users'][0]['email']}}
+					</div>
+				</div>
+				<form method="post" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="inputEmail" class="col-form-label">New Email</label>
+						<input name="inputEmail" type="email" id="inputEmail" class="form-control"
+							placeholder="Email address">
+					</div>
+					<p class="text-warning"><small>You will be asked to log in with your new email after you changed
+							your
+							email</small></p>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+						<button type="submit" class="btn btn-primary">SAVE</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
