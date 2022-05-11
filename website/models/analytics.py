@@ -144,6 +144,7 @@ def chart_data_verification(data, collection, chart_names, user_id):
     # empty check
     data_in_depth = chart_collection_defence(data, collection, chart_names)
     if not data_in_depth:
+        empty_charts_by_names(chart_names)
         return False
 
     user_dat = [dat for dat in data_in_depth if dat["userID"] == user_id]
@@ -199,8 +200,7 @@ def counts_chart(data, chart_names, user_id):
 
 
 def apps_chart(data, chart_titles, user_id):
-    """ Generate app data
-    """
+    """ Generate app data """
     chart_names = chart_titles[1:5]
 
     user_app = chart_data_verification(data, "applications", chart_names, user_id)
