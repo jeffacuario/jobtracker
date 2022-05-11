@@ -253,5 +253,3 @@ def skills_chart(data, chart_names, user_id):
 def global_companies(data):
     """ All data per users - moniker 'How do you compare?'"""
     pass
-
-
