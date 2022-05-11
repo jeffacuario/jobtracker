@@ -14,7 +14,9 @@
             <td>{{skills[n].position}}</td>
             <td>{{skills[n].company}}</td>
             <td>
-                <a class="edit" title="Edit" data-toggle="tooltip">Edit</a>
+                {% with entry=skills[n] %}
+                    {% include 'skills/skills_detail_modal.html'%}
+                {% endwith %}
                 {% with val='skills/'+ skills[n].id + '/delete', entry= ''+ skills[n].skill + ' - ' + skills[n].position  %}
                     {% include 'delete_modal.html'%}
                 {% endwith %}
@@ -23,4 +25,3 @@
         {% endfor %}
     </tbody>
 </table>
-

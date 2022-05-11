@@ -18,7 +18,10 @@
             <td>{{jobs[n].date}}</td>
             <td>{{jobs[n].status}}</td>
             <td>
-                <a class="edit" title="Edit" data-toggle="tooltip">Edit</a>
+                {% with entry=jobs[n] %}
+                    {% include 'jobs/jobs_detail_modal.html'%}
+                {% endwith %}
+
                 {% with val='jobs/'+ jobs[n].id + '/delete', entry='' + jobs[n].position + ' - ' + jobs[n].company %}
                     {% include 'delete_modal.html'%}
                 {% endwith %}
