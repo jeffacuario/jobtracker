@@ -1,0 +1,79 @@
+<form action="jobs/{{entry.id}}/update" method="POST">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" class="form-control" id="company" aria-describedby="companyHelp"
+                name="company" value="{{entry.company}}" />
+        </div>
+        <div class="col-md-4 ml-auto">
+            <label for="position" class="form-label">Job Title</label>
+            <input type="text" class="form-control" id="position" aria-describedby="positionHelp"
+                name="position" value="{{entry.position}}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="url" class="form-label">URL</label>
+            {% if entry.url !=0 %}
+                <input type="text" class="form-control" id="url" aria-describedby="urlHelp" name="url"
+                    value="{{entry.url}}"/>
+            {% else %}
+                <input type="text" class="form-control" id="url" aria-describedby="urlHelp"
+                    name="url" />
+            {% endif %}
+        </div>
+        <div class="col-md-4 ml-auto">
+            <label for="location" class="form-label">Location</label>
+            {% if entry.location != 0 %}
+                <input type="text" class="form-control" id="location" aria-describedby="locationHelp"
+                    name="location" value="{{entry.location}}" />
+            {% else %}
+                <input type="text" class="form-control" id="location" aria-describedby="locationHelp"
+                    name="location" />
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="status" aria-describedby="statusHelp"
+                name="status" value="{{entry.status}}" />
+                
+        </div>
+        <div class="col-md-4 ml-auto">
+            <label for="date" class="form-label">Date</label>
+            <input type="text" class="form-control" id="date" aria-describedby="dateHelp"
+                name="date" value="{{entry.date}}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="type" class="form-label">Type</label>
+            <select name="type" class="form-control" >
+                <option selected>{{entry.type}}</option>
+                {% for type in typeList %}
+                    {% if type != entry.type %}
+                        <option>{{type}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-4">
+            <label for="notes" class="form-label">Description/Notes:</label>
+            {% if entry.location != 0 %}
+                <input type="text" class="form-control" id="notes" aria-describedby="notesHelp"
+                name="notes" value="{{entry.notes}}"/>
+            {% else %}
+                <input type="text" class="form-control" id="notes" aria-describedby="notesHelp"
+                name="notes"/>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="modal-action">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Update</button>
+    </div>
+</form>

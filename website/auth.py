@@ -40,7 +40,7 @@ def login():
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
             # print(error)
-            if error == 'INVALID PASSWORD' or error == 'EMAIL_NOT_FOUND':
+            if error == 'INVALID_PASSWORD' or error == 'EMAIL_NOT_FOUND':
                 error_message = "You have entered an invalid email or password"
             return render_template("auth/login.html", error_message=error_message)  # noqa E501
     return render_template("auth/login.html")
@@ -76,6 +76,25 @@ def register():
             return redirect(url_for("auth.login"))
 
     return render_template('auth/register.html')
+
+
+@auth.route('/reset', methods=['POST', 'GET'])
+def reset():
+    """
+    Password Reset Page
+    """
+    if request.method == 'POST':
+        email = request.form['inputEmail']
+        try:
+            fb_auth.send_password_reset_email(email)
+            return redirect(url_for("auth.login"))
+        except requests.exceptions.HTTPError as e:
+            error_json = e.args[1]
+            error = json.loads(error_json)['error']['message']
+            if error == 'EMAIL_NOT_FOUND':
+                error_message = "Email not found"
+            return render_template("auth/reset.html", error_message=error_message)  # noqa E501
+    return render_template('auth/reset.html')
 
 
 @auth.before_app_request

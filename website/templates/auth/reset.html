@@ -2,17 +2,11 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <form class="form-signup" method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Password Reset</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input name="inputEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input name="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-    <br>
-    <br>
-    <p>Don't have an acccount? <a href="{{ url_for('auth.register') }}">Sign up</a></p>
-    <p>Forgot your password? <a href="{{ url_for('auth.reset') }}">Reset your password</a></p>
 </form>
 
 {% if error_message %}
