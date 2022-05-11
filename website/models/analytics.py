@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import pyrebase
 
 import website.models.db as db
 
@@ -162,6 +161,7 @@ def chart_data_verification(data, collection, chart_names, user_id):
 
     return user_dat
 
+
 def user_chart_counter(data, collection, user_id):
     """ Count data created by the specific user id."""
     summation = 0
@@ -198,10 +198,10 @@ def counts_chart(data, chart_names, user_id):
     plt.close()
 
 
-def apps_chart(data, chart_names, user_id):
+def apps_chart(data, chart_titles, user_id):
     """ Generate app data
     """
-    chart_names = chart_names[1:5]
+    chart_names = chart_titles[1:5]
 
     user_app = chart_data_verification(data, "applications", chart_names, user_id)
     if user_app is False:
@@ -216,14 +216,23 @@ def apps_chart(data, chart_names, user_id):
         aggregator_dict_sum_chart("company", companies, each_app)
 
     # Due to names are locally managed
-    plot_creator(positions, chart_names[0])
-    plot_creator(status, chart_names[1])
-    plot_creator(types, chart_names[2])
+    plot_creator_horizontal(positions, chart_names[0])
+    plot_creator_horizontal(status, chart_names[1])
+    plot_creator_horizontal(types, chart_names[2])
     plot_creator_horizontal(companies, chart_names[3])
+    plot_date_line(dates, chart_titles[6])
 
 
-def apps_active_data_chart(data):
-    pass
+def plot_date_line(data_dict, title):
+    x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
+
+    plt.plot_date(x_ls, y_ls, linestyle='solid')
+    plt.ylabel("Job Entries Tracked")
+    plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
+
+    plt.title(title)
+    plt.savefig(FOLDER + title + '.png')
+    plt.close()
 
 
 def skills_chart(data, chart_names, user_id):
@@ -238,10 +247,10 @@ def skills_chart(data, chart_names, user_id):
     for each_skill in user_skill:
         aggregator_dict_sum_chart("skill", skills_freq_count, each_skill)
 
-    plot_creator(skills_freq_count, chart_names)
+    plot_creator_horizontal(skills_freq_count, chart_names)
 
 
-def global_skills(data):
+def global_companies(data):
     """ All data per users - moniker 'How do you compare?'"""
     pass
 

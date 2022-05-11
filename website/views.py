@@ -78,7 +78,8 @@ def analytics():
                 "Companies Applied",
                 "Position Types",
                 "Positions Applied",
-                "Your Skills"
+                "Your Skills",
+                "Your Entries over time"
             ]
         }
 
