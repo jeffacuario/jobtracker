@@ -7,7 +7,7 @@ source: https://icons8.com/preloaders/
 {% block content %}
 <h1>Analytics</h1>
 
-{% for i in range(0, 10) %}
+{% for i in range(data.charts | length) %}
     {% if i == 0 %}
         <div class="analytics-descriptor">
     {% elif i == 2 %}
@@ -23,10 +23,10 @@ source: https://icons8.com/preloaders/
     {% endif %}
 
     <div class="analytics-chart">
-        <img src="static/images/inf-load-free.gif" id="chart{{i}}">
+        <img src="static/images/analytics/loading/inf-load-free.gif" id="chart{{i}}">
     </div>
 
-    {% if i in [1, 4, 6] %}
+    {% if i in [1, 4, 6, (data.charts | length) - 1] %}
         </div>
     {% endif %}
 {% endfor %}
@@ -46,6 +46,6 @@ source: https://icons8.com/preloaders/
 document.getElementById("refreshData").addEventListener("click", () => {
     window.location.reload();
 })
-getCharts({{data.charts | tojson }})
+getCharts({{data.charts | tojson }}, "{{g.user['users'][0]['localId']}}")
 
 {% endblock %}

@@ -73,8 +73,8 @@ def analytics():
 
         data = {
             "charts": [
-                "Entries Recorded",
-                "Application Statuses",
+                "Your Insights",
+                "Your Job Titles Applied",
                 "Companies Applied",
                 "Position Types",
                 "Positions Applied",
