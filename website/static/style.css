@@ -29,6 +29,13 @@ nav {
     margin-top: 1%;
 }
 
+/* Alert */
+.alert{
+	display: flex;
+	justify-content: space-between;
+  padding-right: 1%;
+}
+
 /************* *************    Landing Page  ************* *************/
 
 /**

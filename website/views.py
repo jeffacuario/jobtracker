@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, g
 from website.auth import login_required
 
 import website.models.db as db
 import website.models.analytics as analysis
 from website.models.models import Application, Skill
-from datetime import date
+from datetime import datetime
 
 views = Blueprint('views', __name__)
 
@@ -13,21 +13,45 @@ views = Blueprint('views', __name__)
 @login_required
 def jobs():
     """Render Jobs Page"""
+    userID = g.user['users'][0]['localId']
+    typeList = ['Full-Time', 'Part-Time', 'Internship']
+
     if request.method == 'POST':
         data = request.form.to_dict()
-        data['date'] = date.today().strftime("%B %d, %Y")
-        app = Application(data['company'], data['position'], data['type'], data['date'], data['status'])
+        data['date'] = str(datetime.now())
+        data['userID'] = userID
+        app = Application(data)
+        jobs = db.getJobs(userID)
+
+        if len(jobs) == 0:
+            db.addJob(app)
+            return render_template("jobs/jobs.html", jobs=db.getJobs(userID), alert=0, typeList=typeList)
+
+        # handle duplicate entry
+        for item in jobs:
+            if app.company == item['company'] and app.position == item['position'] and app.type == item['type']:
+                return render_template("jobs/jobs.html", jobs=jobs, alert=1, typeList=typeList)
+
         db.addJob(app)
-        return render_template("jobs/jobs.html", jobs=db.getJobs())
+        return render_template("jobs/jobs.html", jobs=db.getJobs(userID), alert=0, typeList=typeList)
     else:
-        return render_template("jobs/jobs.html", jobs=db.getJobs())
+        return render_template("jobs/jobs.html", jobs=db.getJobs(userID), typeList=typeList)
 
 
 @views.route('/jobs/<jobID>/delete', methods=['GET'])
 @login_required
 def deleteJob(jobID):
     """ Route for deleting Job """
-    db.deleteJob(jobID)
+    db.deleteJob(jobID, g.user['users'][0]['localId'])
+    return redirect(url_for('views.jobs'))
+
+
+@views.route('/jobs/<jobID>/update', methods=['POST'])
+@login_required
+def updateJob(jobID):
+    """ Route for updating Job """
+    data = request.form.to_dict()
+    db.updateJob(jobID, data, g.user['users'][0]['localId'])
     return redirect(url_for('views.jobs'))
 
 
@@ -35,14 +59,28 @@ def deleteJob(jobID):
 @login_required
 def skills():
     """Render Skills Page"""
+    userID = g.user['users'][0]['localId']
     if request.method == 'POST':
         data = request.form.to_dict()
-        x = data['position'].split('-')
-        skill = Skill(data['skill'], x[0], x[1])
-        db.addSkill(skill)
-        return render_template("skills/skills.html", skills=db.getSkills(), jobs=db.getJobs())
+        data['userID'] = userID
+
+        add = Skill(data)
+        skills = db.getSkills(userID)
+        jobs = db.getJobs(userID)
+
+        if len(skills) == 0:
+            db.addSkill(add)
+            return render_template("skills/skills.html", skills=db.getSkills(userID), jobs=jobs, alert=0)
+
+        # handle duplicate entry
+        for item in skills:
+            if add.skill == item['skill'] and add.posID == item['posID']:
+                return render_template("skills/skills.html", skills=skills, jobs=jobs, alert=1)
+
+        db.addSkill(add)
+        return render_template("skills/skills.html", skills=db.getSkills(userID), jobs=jobs, alert=0)
     else:
-        return render_template("skills/skills.html", skills=db.getSkills(), jobs=db.getJobs())
+        return render_template("skills/skills.html", skills=db.getSkills(userID), jobs=db.getJobs(userID))
 
 
 @views.route('/skills/<skillID>/delete', methods=['GET'])
@@ -50,6 +88,15 @@ def skills():
 def deleteSkill(skillID):
     """ Route for deleting Skill """
     db.deleteSkill(skillID)
+    return redirect(url_for('views.skills'))
+
+
+@views.route('/skills/<skillID>/update', methods=['POST'])
+@login_required
+def updateSkill(skillID):
+    """ Route for updating Skill """
+    data = request.form.to_dict()
+    db.updateSkill(skillID, Skill(data))
     return redirect(url_for('views.skills'))
 
 
