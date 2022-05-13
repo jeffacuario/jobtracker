@@ -16,6 +16,9 @@ class MyTestCase(unittest.TestCase):
         'Name': 'Tester'
     }
 
+    def test_pass(self):
+        self.assertTrue(True)
+
     @classmethod
     def setUpClass(cls):
         """ Set up the database credentials.

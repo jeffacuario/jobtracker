@@ -5,44 +5,41 @@ source: https://icons8.com/preloaders/
 {% extends "base.html" %}
 {% block title %}Analytics{% endblock %}
 {% block content %}
-<h1>Analytics</h1>
-
-{% for i in range(0, 10) %}
-    {% if i == 0 %}
-        <div class="analytics-descriptor">
-    {% elif i == 2 %}
-        <h2>
-            Positions
-        </h2>
-        <div class="analytics-descriptor">
-    {% elif i == 5 %}
-        <h2>
-            Skills
-        </h2>
-        <div class="analytics-descriptor">
-    {% endif %}
-
-    <div class="analytics-chart">
-        <img src="static/images/inf-load-free.gif" id="chart{{i}}">
-    </div>
-
-    {% if i == 1 %}
-        </div>
-    {% elif i == 4 %}
-        </div>
-    {% elif i == 6 %}
-        </div>
-    {% endif %}
-{% endfor %}
-
-<button id="refreshData">
-    Refresh
-</button>
-
 <div>
-<!-- Add in a search engine? -->
-</div>
+    <h1>Analytics</h1>
 
+    {% for i in range(data.charts | length) %}
+        {% if i == 0 %}
+            <div class="analytics-descriptor">
+        {% elif i == 2 %}
+            <h2>
+                Positions
+            </h2>
+            <div class="analytics-descriptor">
+        {% elif i == 5 %}
+            <h2>
+                Skills
+            </h2>
+            <div class="analytics-descriptor">
+        {% endif %}
+
+        <div class="analytics-chart">
+            <img src="static/images/analytics/loading/inf-load-free.gif" id="chart{{i}}">
+        </div>
+
+        {% if i in [1, 4, 6, (data.charts | length) - 1] %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <button id="refreshData">
+        Refresh
+    </button>
+
+    <div>
+    <!-- Add in a search engine? -->
+    </div>
+</div>
 {% endblock %}
 
 {% block script %}
@@ -50,6 +47,6 @@ source: https://icons8.com/preloaders/
 document.getElementById("refreshData").addEventListener("click", () => {
     window.location.reload();
 })
-getCharts({{data.charts | tojson }})
+getCharts({{data.charts | tojson }}, "{{g.user['users'][0]['localId']}}")
 
 {% endblock %}
