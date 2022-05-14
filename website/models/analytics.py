@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use("Agg")  # To multithread generate plots for MacOS
 import matplotlib.pyplot as plt
 import numpy as np
 
