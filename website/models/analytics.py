@@ -20,6 +20,68 @@ def generate_charts(req_data):
     skills_chart(data, req_data['charts'], req_data['userID'])
 
 
+def counts_chart(data, chart_names, user_id):
+    """ Counts chart - count.png
+        Data consists of Applications, Skills, and Contacts entries on record
+    """
+    title = chart_names[0]
+    data_records_count = [
+        user_chart_counter(data, "applications", user_id),
+        user_chart_counter(data, "skills", user_id),
+        user_chart_counter(data, "contacts", user_id),
+    ]
+
+    if max(data_records_count) == 0:
+        plot_no_data(title)
+        return
+
+    plt.bar(['Applications', 'Skills', 'Contacts'], data_records_count)
+    plt.ylabel('Count')
+    plt.yticks(np.arange(0, max(data_records_count) + 1, step=1))
+
+    for each_value in range(len(data_records_count)):
+        plt.text(x=each_value, y=data_records_count[each_value], s=data_records_count[each_value], ha="center")
+
+    plt.title(title)
+    plt.savefig(constants.folder + title + '.png')
+    plt.close()
+
+
+def apps_chart(data, chart_titles, user_id):
+    """ Generate app data """
+    user_app = chart_data_verification(data, "applications", chart_titles, user_id)
+    if user_app is False:
+        return
+
+    positions, dates, types, status, companies = {}, {}, {}, {}, {}
+    for each_app in user_app:
+        aggregator_dict_sum_chart("position", positions, each_app)
+        aggregator_dict_sum_chart("type", types, each_app)
+        aggregator_dict_sum_date_chart("date", dates, each_app)
+        aggregator_dict_sum_chart("status", status, each_app)
+        aggregator_dict_sum_chart("company", companies, each_app)
+
+    # Due to names are locally managed
+    plot_creator_horizontal(positions, chart_titles[2])
+    plot_creator_horizontal(status, chart_titles[3])
+    plot_creator_horizontal(types, chart_titles[4])
+    plot_creator_horizontal(companies, chart_titles[5])
+    plot_date_line(dates, chart_titles[1])
+
+
+def skills_chart(data, chart_names, user_id):
+    """ Skills charts """
+    user_skill = chart_data_verification(data, "skills", chart_names, user_id)
+    if user_skill is False:
+        return
+
+    skills_freq_count = {}
+    for each_skill in user_skill:
+        aggregator_dict_sum_chart("skill", skills_freq_count, each_skill)
+
+    plot_creator_horizontal(skills_freq_count, chart_names[6])
+
+
 def aggregator_dict_sum_chart(attribute, data, iter_item):
     """ Generate dictionary counter"""
     if iter_item[attribute] in data:
@@ -29,7 +91,7 @@ def aggregator_dict_sum_chart(attribute, data, iter_item):
 
 
 def aggregator_dict_sum_date_chart(attribute, data, iter_item):
-    """ Generate dictionary counter"""
+    """ Generate dictionary counter for dates"""
     date_object = datetime.datetime.strptime(iter_item[attribute], "%Y-%m-%d %H:%M:%S.%f")
     conv_date = date_object.strftime("%B") + " " + str(date_object.day) + ", " + str(date_object.year)
     if conv_date in data:
@@ -127,6 +189,19 @@ def plot_creator_horizontal(data_dict, title, lab_y=''):
     plt.close()
 
 
+def plot_date_line(data_dict, title):
+    """ Date plotter"""
+    x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
+
+    plt.plot_date(x_ls, y_ls, linestyle='solid')
+    plt.ylabel("Job Entries Tracked")
+    plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
+
+    plt.title(title)
+    plt.savefig(constants.folder + title + '.png')
+    plt.close()
+
+
 def chart_collection_defence(data, target, chart_names):
     """ In the event of a missing collection, chart creation will not be compromised entirely."""
     try:
@@ -182,81 +257,6 @@ def user_chart_counter(data, collection, user_id):
         if each_data.to_dict()["userID"] == user_id:
             summation += 1
     return summation
-
-
-def counts_chart(data, chart_names, user_id):
-    """ Counts chart - count.png
-        Data consists of Applications, Skills, and Contacts entries on record
-    """
-    title = chart_names[0]
-    data_records_count = [
-        user_chart_counter(data, "applications", user_id),
-        user_chart_counter(data, "skills", user_id),
-        user_chart_counter(data, "contacts", user_id),
-    ]
-
-    if max(data_records_count) == 0:
-        plot_no_data(title)
-        return
-
-    plt.bar(['Applications', 'Skills', 'Contacts'], data_records_count)
-    plt.ylabel('Count')
-    plt.yticks(np.arange(0, max(data_records_count) + 1, step=1))
-
-    for each_value in range(len(data_records_count)):
-        plt.text(x=each_value, y=data_records_count[each_value], s=data_records_count[each_value], ha="center")
-
-    plt.title(title)
-    plt.savefig(constants.folder + title + '.png')
-    plt.close()
-
-
-def apps_chart(data, chart_titles, user_id):
-    """ Generate app data """
-    user_app = chart_data_verification(data, "applications", chart_titles, user_id)
-    if user_app is False:
-        return
-
-    positions, dates, types, status, companies = {}, {}, {}, {}, {}
-    for each_app in user_app:
-        aggregator_dict_sum_chart("position", positions, each_app)
-        aggregator_dict_sum_chart("type", types, each_app)
-        aggregator_dict_sum_date_chart("date", dates, each_app)
-        aggregator_dict_sum_chart("status", status, each_app)
-        aggregator_dict_sum_chart("company", companies, each_app)
-
-    # Due to names are locally managed
-    plot_creator_horizontal(positions, chart_titles[2])
-    plot_creator_horizontal(status, chart_titles[3])
-    plot_creator_horizontal(types, chart_titles[4])
-    plot_creator_horizontal(companies, chart_titles[5])
-    plot_date_line(dates, chart_titles[1])
-
-
-def plot_date_line(data_dict, title):
-    x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
-    # print(x_ls)
-
-    plt.plot_date(x_ls, y_ls, linestyle='solid')
-    plt.ylabel("Job Entries Tracked")
-    plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
-
-    plt.title(title)
-    plt.savefig(constants.folder + title + '.png')
-    plt.close()
-
-
-def skills_chart(data, chart_names, user_id):
-    """ Skills charts """
-    user_skill = chart_data_verification(data, "skills", chart_names, user_id)
-    if user_skill is False:
-        return
-
-    skills_freq_count = {}
-    for each_skill in user_skill:
-        aggregator_dict_sum_chart("skill", skills_freq_count, each_skill)
-
-    plot_creator_horizontal(skills_freq_count, chart_names[6])
 
 
 def global_companies(data):
