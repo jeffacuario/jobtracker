@@ -3,7 +3,7 @@ from website.auth import login_required
 
 import website.models.db as db
 import website.models.analytics as analysis
-from website.models.models import Application, Skill
+from website.models.models import Application, Contact, Skill
 from datetime import datetime
 
 views = Blueprint('views', __name__)
@@ -100,11 +100,64 @@ def updateSkill(skillID):
     return redirect(url_for('views.skills'))
 
 
-@views.route('/contacts')
+@views.route('/contacts', methods=['GET', 'POST'])
 @login_required
 def contacts():
     """Render Contacts Page"""
-    return render_template("contacts/contacts.html")
+    userID = g.user['users'][0]['localId']
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        data['userID'] = userID
+        # default image
+        data['img'] = 'https://firebasestorage.googleapis.com/v0/b/jobtrack-39d73.appspot.com/o/photo_icon.jpeg?alt=media&token=e1c9c533-0aa1-44bb-b465-762fd9d1b928'
+
+        if request.files['img']:
+            img = request.files['img']
+            data['img'] = db.addContactImage(img, userID)
+
+        add = Contact(data)
+        contacts = db.getContacts(userID)
+        jobs = db.getJobs(userID)
+
+        if len(contacts) == 0:
+            db.addContact(add)
+            return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
+
+        # handle duplicate entry
+        for item in contacts:
+            if add.fName == item['fName'] and add.lName == item['lName'] and add.title == item['title'] and add.email == item['email'] and add.phone == item['phone']:
+                return render_template("contacts/contacts.html", contacts=contacts, jobs=jobs, alert=1)
+
+        db.addContact(add)
+        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
+    else:
+        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=db.getJobs(userID))
+
+
+@views.route('/contacts/<contactID>/delete', methods=['GET'])
+@login_required
+def deleteContact(contactID):
+    """ Route for deleting Contact """
+    db.deleteContact(contactID)
+    return redirect(url_for('views.contacts'))
+
+
+@views.route('/contacts/<contactID>/update', methods=['POST'])
+@login_required
+def updateContact(contactID):
+    """ Route for updating Contact """
+    userID = g.user['users'][0]['localId']
+
+    data = request.form.to_dict()
+    data['userID'] = userID
+    if request.files['img']:
+        img = request.files['img']
+        data['img'] = db.addContactImage(img, userID)
+    else:
+        data['img'] = db.getContactImgURL(contactID)['img']
+        
+    db.updateContact(contactID, Contact(data))
+    return redirect(url_for('views.contacts'))
 
 
 @views.route('/analytics', methods=['GET', 'POST'])
