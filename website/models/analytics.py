@@ -1,6 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 
 import website.models.db as db
 import website.models.constants as constants
@@ -25,6 +26,16 @@ def aggregator_dict_sum_chart(attribute, data, iter_item):
         data[iter_item[attribute]] += 1
     else:
         data[iter_item[attribute]] = 1
+
+
+def aggregator_dict_sum_date_chart(attribute, data, iter_item):
+    """ Generate dictionary counter"""
+    date_object = datetime.datetime.strptime(iter_item[attribute], "%Y-%m-%d %H:%M:%S.%f")
+    conv_date = date_object.strftime("%B") + " " + str(date_object.day) + ", " + str(date_object.year)
+    if conv_date in data:
+        data[conv_date] += 1
+    else:
+        data[conv_date] = 1
 
 
 def plot_no_data(title):
@@ -210,7 +221,7 @@ def apps_chart(data, chart_titles, user_id):
     for each_app in user_app:
         aggregator_dict_sum_chart("position", positions, each_app)
         aggregator_dict_sum_chart("type", types, each_app)
-        aggregator_dict_sum_chart("date", dates, each_app)
+        aggregator_dict_sum_date_chart("date", dates, each_app)
         aggregator_dict_sum_chart("status", status, each_app)
         aggregator_dict_sum_chart("company", companies, each_app)
 
@@ -224,6 +235,7 @@ def apps_chart(data, chart_titles, user_id):
 
 def plot_date_line(data_dict, title):
     x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
+    # print(x_ls)
 
     plt.plot_date(x_ls, y_ls, linestyle='solid')
     plt.ylabel("Job Entries Tracked")
