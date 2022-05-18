@@ -277,8 +277,3 @@ def user_chart_counter(data, collection, user_id):
         if each_data.to_dict()["userID"] == user_id:
             summation += 1
     return summation
-
-
-def global_companies(data):
-    """ All data per users - moniker 'How do you compare?'"""
-    pass
