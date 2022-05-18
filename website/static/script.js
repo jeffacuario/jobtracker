@@ -17,7 +17,7 @@ function getCharts(charts, uid) {
         })
         .then( (c) => {
             for(let i = 0; i < charts.length; i++){
-                document.getElementById("chart" + i).src = baseImgSrc + charts[i] + baseExt;
+                document.getElementById("chart" + charts[i]).src = baseImgSrc + charts[i] + baseExt;
             }
             })
         .catch( (e) =>{

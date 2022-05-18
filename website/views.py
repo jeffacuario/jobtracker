@@ -126,7 +126,9 @@ def analytics():
                 "Companies Applied",
                 "Position Types",
                 "Positions Applied",
-                "Your Skills"
+                "Your Skills",
+                "Job Titles by Other Users",
+                "Companies by Other Users"
             ]
         }
 

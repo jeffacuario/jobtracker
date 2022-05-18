@@ -18,6 +18,7 @@ def generate_charts(req_data):
     counts_chart(data, req_data['charts'], req_data['userID'])
     apps_chart(data, req_data['charts'], req_data['userID'])
     skills_chart(data, req_data['charts'], req_data['userID'])
+    apps_chart_global(data, req_data['charts'])
 
 
 def counts_chart(data, chart_names, user_id):
@@ -67,6 +68,22 @@ def apps_chart(data, chart_titles, user_id):
     plot_creator_horizontal(types, chart_titles[4])
     plot_creator_horizontal(companies, chart_titles[5])
     plot_date_line(dates, chart_titles[1])
+
+
+def apps_chart_global(data, chart_titles):
+    """ Generate app data """
+    user_app = chart_data_verification(data, "applications", chart_titles)
+    if user_app is False:
+        return
+
+    positions, companies = {}, {}
+    for each_app in user_app:
+        aggregator_dict_sum_chart("position", positions, each_app)
+        aggregator_dict_sum_chart("company", companies, each_app)
+
+    # Due to names are locally managed
+    plot_creator_horizontal(positions, chart_titles[7])
+    plot_creator_horizontal(companies, chart_titles[8])
 
 
 def skills_chart(data, chart_names, user_id):
@@ -224,7 +241,7 @@ def empty_charts_by_names(chart_names):
         plot_no_data(each_chart)
 
 
-def chart_data_verification(data, collection, chart_names, user_id):
+def chart_data_verification(data, collection, chart_names, user_id=None):
     """ Verifies the data to generate charts.
         Returns the data by user id or False if data fails the check.
     """
@@ -234,7 +251,10 @@ def chart_data_verification(data, collection, chart_names, user_id):
         empty_charts_by_names(chart_names)
         return False
 
-    user_dat = [dat for dat in data_in_depth if dat["userID"] == user_id]
+    if user_id is not None:
+        user_dat = [dat for dat in data_in_depth if dat["userID"] == user_id]
+    else:
+        user_dat = [dat for dat in data_in_depth]
 
     # Force a list from the destructure
     if isinstance(user_dat, str):
