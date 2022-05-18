@@ -3,80 +3,120 @@
 
 {% block content %}
 
-<!------------------- Background ------------------->
-<section class="bg-section-setting" style="background-image: url(/static/images/keep_track_1.jpg);">
-    <div class="bg-area">
-        <div class="bg-content-setting">
-            <h2>Manage Your Profile</h2>
-            <p>Keep Your Profile Up-to-Date</p>
-        </div>
-    </div>
-</section>
-
-<!------------------- User profile ------------------->
-<section class="user-section">
-    <div class="user-container">
-        <div class="row">
-            <div class="col-6 col-md-4">
-                <div class="user-profile">
-                    {% if filename %}
-                    <div>
-                        <img src="{{ url_for('profile.display_image', filename=filename) }}">
-                    </div>
-                    {% elif g.user['users'][0]['photoUrl'] %}
-                    <div>
-                        <img src="{{g.user['users'][0]['photoUrl']}}">
-                    </div>
-                    {%else%}
-                    <div>
-                        <img src="{{ url_for('profile.display_default') }}">
-                    </div>
-                    {% endif %}
-                    <div>
-                        <button button type="button" class="button open-modal" data-toggle="modal"
-                            data-target="#uploadPicture">Upload picture&nbsp;<i class="icon-pencil"></i></button>
-                        {% include "settings/upload_modal.html" %}
-                    </div>
-
-                    <h3>{{g.user['users'][0]['displayName']}}</h3>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-8">
-                <div class="user-info-section">
-                    <h3><i class="icon-edit"></i>&nbsp; CONTACT/SECURITY</h3>
-                    <hr />
-                    <div class="row justify-content-start">
-                        <div class="col-4 user-content-category">
-                            <dd>EMAIL</dd>
-                        </div>
-                        <div class="col-4 user-content-input">
-                            <span>{{g.user['users'][0]['email']}}</span>
-                        </div>
-                        <div class="col-4 user-content-input">
-                            <button button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                data-target="#updateEmail">Edit</button>
-                            {% include "settings/updateEmail_modal.html" %}
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-start">
-                        <div class="col-4 user-content-category">
-                            <dd>PASSWORD</dd>
-                        </div>
-                        <div class="col-4 user-content-input">
-                            <span>**********</span>
-                        </div>
-                        <div class="col-4 user-content-input">
-                            <button button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                data-target="#updatePassword">Edit</button>
-                            {% include "settings/updatePassword_modal.html" %}
-                        </div>
-                    </div>
-                </div>
+    <!------------------- Background ------------------->
+    <section class="bg-section-setting" style="background-image: url(/static/images/keep_track_1.jpg);">
+        <div class="bg-area">
+            <div class="bg-content-setting">
+                <h2>Manage Your Profile</h2>
+                <p>Keep Your Profile Up-to-Date</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!------------------- User profile ------------------->
+    <section class="user-section">
+        <div class="user-container">
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    <div class="user-profile">
+                        {% if g.user['users'][0]['photoUrl'] %}
+                            <div>
+                                <img src="{{ g.user['users'][0]['photoUrl'] }}">
+                            </div>
+                        {% else %}
+                            <div>
+                                <img src="{{ url_for('profile.display_default') }}">
+                            </div>
+                        {% endif %}
+                        <div>
+                            <button button type="button" class="button open-modal" data-toggle="modal"
+                                    data-target="#uploadPicture">Upload picture&nbsp;<i class="icon-pencil"></i>
+                            </button>
+                            {% include "settings/upload_modal.html" %}
+                        </div>
+
+                        <h3>{{ g.user['users'][0]['displayName'] }}</h3>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <div class="user-info-section">
+                        <h3><i class="icon-edit"></i>&nbsp; CONTACT/SECURITY</h3>
+                        <hr/>
+                        <div class="row justify-content-start">
+                            <div class="col-4 user-content-category">
+                                <dd>EMAIL</dd>
+                            </div>
+                            <div class="col-4 user-content-input">
+                                <span>{{ g.user['users'][0]['email'] }}</span>
+                            </div>
+                            <div class="col-4 user-content-input">
+                                <button button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
+                                        data-target="#updateEmail">Edit
+                                </button>
+                                {% include "settings/updateEmail_modal.html" %}
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-start">
+                            <div class="col-4 user-content-category">
+                                <dd>PASSWORD</dd>
+                            </div>
+                            <div class="col-4 user-content-input">
+                                <span>**********</span>
+                            </div>
+                            <div class="col-4 user-content-input">
+                                <button button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
+                                        data-target="#updatePassword">Edit
+                                </button>
+                                {% include "settings/updatePassword_modal.html" %}
+                            </div>
+                        </div>
+                    </div>
+                                      <div class="user-info-section">
+                            <h3><i class="icon-bookmark"></i>&nbsp; JOB INTERESTS</h3>
+                            <br>
+                            <div class="education-info">
+                                <div class="row justify-content-start">
+                                    <div class="col-4 user-content-category">
+                                        <dd>ROLES</dd>
+                                    </div>
+                                    <div class="col-8 user-content-input">
+                                        {{ roles }}
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-start">
+                                    <div class="col-4 user-content-category">
+                                        <dd>FULL TIME/INTERNSHIP</dd>
+                                    </div>
+                                    <div class="col-8 user-content-input">
+                                        {{ types }}
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-start">
+                                    <div class="col-4 user-content-category">
+                                        <dd>SKILLS</dd>
+                                    </div>
+                                    <div class="col-8 user-content-input">
+                                        {{ skills }}
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-start">
+                                    <div class="col-4 user-content-category">
+                                        <dd>COMPANIES</dd>
+                                    </div>
+                                    <div class="col-8 user-content-input">
+                                        {{ companies }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
