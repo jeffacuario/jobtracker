@@ -52,9 +52,9 @@ def settings_page():
     for i in range(len(skill_res)):
         if skill_res[i]['skill'] not in skills:
             skills.append(skill_res[i]['skill'])
-    return render_template("settings/settings.html", 
-                           roles=", ". join(roles), companies=", ". 
-                           join(companies), types=", ". join(types), 
+    return render_template("settings/settings.html",
+                           roles=", ". join(roles), companies=", ".
+                           join(companies), types=", ". join(types),
                            skills=", ". join(skills))
 
 
@@ -89,7 +89,9 @@ def update_file():
 
 @profile.route("/display")
 def display_default():
-    default_url = "https://firebasestorage.googleapis.com/v0/b/jobtrack-39d73.appspot.com/o/photo_icon.jpeg?alt=media&token=e1c9c533-0aa1-44bb-b465-762fd9d1b928"
+    default_url = "https://firebasestorage.googleapis.com/v0/b/jobtrack-\
+    39d73.appspot.com/o/photo_icon.jpeg?alt=media&token=e1c9c533-0aa1-\
+    44bb-b465-762fd9d1b928"
     r = requests.get(default_url, stream=True)
     res = r.raw
     return send_file(res, mimetype='image/jpeg')
