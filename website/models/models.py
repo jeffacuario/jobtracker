@@ -37,3 +37,20 @@ class Skill:
         except Exception:
             print('Skills: handling userID')
             self.userID = x['userID']
+
+
+class Contact:
+    def __init__(self, data):
+        self.fName = data['fName']
+        self.lName = data['lName']
+        self.title = data['title']
+        self.email = data['email']
+        self.phone = data['phone']
+        self.company = data['company']
+        self.img = data['img']
+        self.userID = data['userID']
+        try:
+            self.notes = data['notes']
+        except Exception:
+            print('notes does not exist, setting notes to default value of 0')
+            self.notes = 0

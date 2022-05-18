@@ -1,0 +1,34 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Update/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n in range(contacts|length) %}
+        <tr>
+            <td><img src="{{contacts[n].img}}" alt="" height="40"></td>
+            <td>{{contacts[n].fName}} {{contacts[n].lName}}</td>
+            <td>{{contacts[n].title}}</td>
+            <td>{{contacts[n].company}}</td>
+            <td>{{contacts[n].email}}</td>
+            <td>{{contacts[n].phone}}</td>
+            <td>
+                {% with entry=contacts[n] %}
+                    {% include 'contacts/contacts_detail_modal.html'%}
+                {% endwith %}
+
+                {% with val='contacts/'+ contacts[n].id + '/delete', entry='' + contacts[n].company %}
+                    {% include 'delete_modal.html'%}
+                {% endwith %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

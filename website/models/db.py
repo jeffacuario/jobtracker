@@ -1,6 +1,8 @@
 import firebase_admin as fa
 from firebase_admin import firestore
 import json
+import pyrebase
+from flask import session
 
 
 def db_init():
@@ -9,6 +11,14 @@ def db_init():
     file_json = "credentials.json"
     cred = fa.credentials.Certificate("./private/" + file_json)
     fa.initialize_app(cred)
+
+
+def fbStorage_init():
+    """ Initialize the connection to firebase storage"""
+    # pyrebase credentials
+    with open("./private/jobtrack-pyrebase-credentials.json") as json_file:
+        pyrebase_config = json.load(json_file)
+    return pyrebase.initialize_app(pyrebase_config)
 
 
 def dbConn(collection):
@@ -90,6 +100,49 @@ def updateSkill(skillID, data):
     values = json.dumps(data.__dict__)
     dbConn('skills').document(skillID).update(eval(values))
     return 'updated'
+
+
+def getContacts(userID):
+    """Returns all user contacts"""
+    return allDocs(dbConn('contacts'), userID)
+
+
+def addContact(val):
+    """Adds contact to firebase contacts collection"""
+    values = json.dumps(val.__dict__)
+    dbConn('contacts').add(eval(values))
+    return "success"
+
+
+def deleteContact(contactID):
+    """Deletes provided contactID from the firebase database"""
+    dbConn('contacts').document(contactID).delete()
+    return 'deleted'
+
+
+def updateContact(contactID, data):
+    """Updates provided contactID from the firebase database"""
+    values = json.dumps(data.__dict__)
+    dbConn('contacts').document(contactID).update(eval(values))
+    return 'updated'
+
+
+def addContactImage(img, userID):
+    """Adds the contact image to firebase storage"""
+    try:
+        path_on_cloud = "contact_images/" + userID + "/" + img.filename
+        upload = fbStorage_init().storage().child(path_on_cloud).put(img, session.get("token_id"))
+        image_url = fbStorage_init().storage().child(path_on_cloud).get_url(upload["downloadTokens"])
+        return image_url
+
+    except Exception as e:
+        print('error uploading contact photo: ', e)
+
+
+def getContactImgURL(contactID):
+    """Get the Contact entry values so we can extract IMG URL"""
+    x = dbConn('contacts').document(contactID).get()
+    return x.to_dict()
 
 
 def retrieve_all():
