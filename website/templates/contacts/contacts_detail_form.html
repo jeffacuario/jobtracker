@@ -1,0 +1,55 @@
+<form action="contacts/{{entry.id}}/update" method="POST" enctype=multipart/form-data>
+    <div class="mb-3">
+        <img src="{{entry.img}}" alt="" height="100">
+        <input type="file" id="img" aria-describedby="imgHelp" name="img" accept="image/*" value="{{entry.img}}" />
+    </div>
+    <div class="mb-3">
+        <label for="fName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="fName" aria-describedby="fNameHelp"
+            name="fName" value="{{entry.fName}}" />
+    </div>
+    <div class="mb-3">
+        <label for="lName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lName" aria-describedby="lNameHelp"
+            name="lName" value="{{entry.lName}}" />
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Job Title</label>
+        <input type="text" class="form-control" id="title" aria-describedby="titleHelp"
+            name="title" value="{{entry.title}}" />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+            name="email" value="{{entry.email}}" />
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">phone</label>
+        <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp"
+            name="phone" value="{{entry.phone}}" />
+    </div>
+    <div class="mb-3">
+        <label for="company" class="form-label">company</label>
+        <input type="text" class="form-control" id="company" aria-describedby="companyHelp"
+            name="company" value="{{entry.company}}" list="companyList"/>
+        <datalist id="companyList">
+            {% for n in jobs %}
+                <option value="{{n.company}}">{{n.company}}</option>
+            {%endfor%}
+        </datalist>
+    </div>
+    <div class="mb-4">
+        <label for="notes" class="form-label">Description/Notes:</label>
+        {% if entry.notes != 0 %}
+            <input type="text" class="form-control" id="notes" aria-describedby="notesHelp"
+            name="notes" value="{{entry.notes}}"/>
+        {% else %}
+            <input type="text" class="form-control" id="notes" aria-describedby="notesHelp"
+            name="notes"/>
+        {% endif %}
+    </div>
+    <div class="modal-action">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Update</button>
+    </div>
+</form>

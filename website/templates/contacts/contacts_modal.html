@@ -1,0 +1,21 @@
+<!-- Button to trigger modal for contact form-->
+<button type="button" class="btn btn-primary addContactButton" data-toggle="modal" title="Add a new contact"
+    data-target="#addNewContact">
+    Add Contact
+</button>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="addNewContact" tabindex="-1" role="dialog" aria-labelledby="addNewContactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewContactLabel">
+                    Add New Contact
+                </h5>
+            </div>
+            <div class="modal-body">
+                {% include 'contacts/contacts_form.html' %}
+            </div>
+        </div>
+    </div>
+</div>

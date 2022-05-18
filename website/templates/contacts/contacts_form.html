@@ -1,0 +1,46 @@
+<form action="/contacts" method="POST" enctype=multipart/form-data>
+    <div class="mb-3">
+        <label for="fName" class="form-label">First Name*</label>
+        <input type="text" class="form-control" id="fName" aria-describedby="fNameHelp"
+            name="fName" placeholder="Enter First Name" />
+    </div>
+    <div class="mb-3">
+        <label for="lName" class="form-label">Last Name*</label>
+        <input type="text" class="form-control" id="lName" aria-describedby="lNameHelp"
+            name="lName" placeholder="Enter Last Name" />
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label" name="title">Job Title*</label>
+        <input type="text" class="form-control" id="title" aria-describedby="titleHelp"
+            name="title" placeholder="Enter Job Title" />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email*</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+            placeholder="Enter Email" />
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone*</label>
+        <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" name="phone"
+            placeholder="Enter Phone" />
+    </div>
+    <div class="mb-3">
+        <label for="company" class="form-label" name="company" >Company*</label>
+        <input type="text" class="form-control" id="company" aria-describedby="companyHelp"
+        name="company" placeholder="Enter Company" list="companyList" />
+        <datalist id="companyList">
+            {% for n in jobs %}
+                <option value="{{n.company}}">{{n.company}}</option>
+            {%endfor%}
+        </datalist>
+    </div>
+    <div class="mb-3">
+        <label for="img" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" id="img" aria-describedby="imgHelp" name="img" accept="image/*"/>
+    </div>
+
+    <div class="modal-action">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
