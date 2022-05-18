@@ -19,11 +19,7 @@
         <div class="row">
             <div class="col-6 col-md-4">
                 <div class="user-profile">
-                    {% if filename %}
-                    <div>
-                        <img src="{{ url_for('profile.display_image', filename=filename) }}">
-                    </div>
-                    {% elif g.user['users'][0]['photoUrl'] %}
+                    {% if g.user['users'][0]['photoUrl'] %}
                     <div>
                         <img src="{{g.user['users'][0]['photoUrl']}}">
                     </div>

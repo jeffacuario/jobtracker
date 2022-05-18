@@ -1,9 +1,11 @@
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, redirect, url_for, \
-    session
+    session, send_file
+import requests
 import json
 import pyrebase
 from firebase_admin import auth as fa_auth
+import os
 
 auth = Blueprint("auth", __name__)
 profile = Blueprint("profile", __name__)
@@ -50,9 +52,9 @@ def update_file():
                 upload["downloadTokens"]
             )
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
-            return render_template("settings/settings.html", filename=filename)
-        else:
-            return redirect(url_for("profile.settings_page"))
+            if os.path.exists(path_local + filename):
+                os.remove(path_local + filename)
+        return redirect(url_for("profile.settings_page"))
     if "inputEmail" in request.form:
         email = request.form["inputEmail"]
         fa_auth.update_user(session.get("user_id"), email=email)
@@ -63,12 +65,10 @@ def update_file():
         return redirect(url_for("auth.login"))
 
 
-@profile.route("/display/<filename>")
-def display_image(filename):
-    return redirect(url_for("static", filename="images/profile/" + filename))
-
-
 @profile.route("/display")
 def display_default():
-    return redirect(url_for("static", filename="images/profile/\
-    photo_icon.jpeg"))
+    default_url = "https://firebasestorage.googleapis.com/v0/b/jobtrack-39d73.appspot.com/o/photo_icon.jpeg?alt=media&token=e1c9c533-0aa1-44bb-b465-762fd9d1b928"
+    r = requests.get(default_url, stream=True)
+    res = r.raw
+    return send_file(res, mimetype='image/jpeg')
+
