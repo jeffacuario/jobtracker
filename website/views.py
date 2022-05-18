@@ -121,12 +121,12 @@ def analytics():
         data = {
             "charts": [
                 "Your Insights",
+                "Your Entries over time",
                 "Your Job Titles Applied",
                 "Companies Applied",
                 "Position Types",
                 "Positions Applied",
-                "Your Skills",
-                "Your Entries over time"
+                "Your Skills"
             ]
         }
 

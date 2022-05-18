@@ -3,10 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import website.models.db as db
-
-# Constants and Global settings
-matplotlib.use("Agg")  # To multithread generate plots for MacOS
-FOLDER = 'website/static/images/analytics/'
+import website.models.constants as constants
 
 
 def generate_charts(req_data):
@@ -14,6 +11,8 @@ def generate_charts(req_data):
     data = db.retrieve_all()
     # Reference to matplotlib docs
     # https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py
+
+    matplotlib.use("Agg")  # To multithread generate plots for MacOS
 
     counts_chart(data, req_data['charts'], req_data['userID'])
     apps_chart(data, req_data['charts'], req_data['userID'])
@@ -45,7 +44,7 @@ def plot_no_data(title):
     plt.xticks([])
 
     plt.title(title)
-    plt.savefig(FOLDER + title + '.png')
+    plt.savefig(constants.folder + title + '.png')
     plt.close()
 
 
@@ -74,7 +73,7 @@ def plot_creator(data_dict, title, lab_y=''):
         plt.text(x=each_value, y=y_ls[each_value], s=y_ls[each_value], ha="center")
 
     plt.title(title)
-    plt.savefig(FOLDER + title + '.png')
+    plt.savefig(constants.folder + title + '.png')
     plt.close()
 
 
@@ -113,7 +112,7 @@ def plot_creator_horizontal(data_dict, title, lab_y=''):
         )
 
     plt.title(title)
-    plt.savefig(FOLDER + title + '.png')
+    plt.savefig(constants.folder + title + '.png')
     plt.close()
 
 
@@ -197,15 +196,14 @@ def counts_chart(data, chart_names, user_id):
         plt.text(x=each_value, y=data_records_count[each_value], s=data_records_count[each_value], ha="center")
 
     plt.title(title)
-    plt.savefig(FOLDER + title + '.png')
+    plt.savefig(constants.folder + title + '.png')
     plt.close()
 
 
 def apps_chart(data, chart_titles, user_id):
     """ Generate app data """
-    chart_names = chart_titles[1:5]
 
-    user_app = chart_data_verification(data, "applications", chart_names, user_id)
+    user_app = chart_data_verification(data, "applications", chart_titles, user_id)
     if user_app is False:
         return
 
@@ -218,11 +216,11 @@ def apps_chart(data, chart_titles, user_id):
         aggregator_dict_sum_chart("company", companies, each_app)
 
     # Due to names are locally managed
-    plot_creator_horizontal(positions, chart_names[0])
-    plot_creator_horizontal(status, chart_names[1])
-    plot_creator_horizontal(types, chart_names[2])
-    plot_creator_horizontal(companies, chart_names[3])
-    plot_date_line(dates, chart_titles[6])
+    plot_creator_horizontal(positions, chart_titles[2])
+    plot_creator_horizontal(status, chart_titles[3])
+    plot_creator_horizontal(types, chart_titles[4])
+    plot_creator_horizontal(companies, chart_titles[5])
+    plot_date_line(dates, chart_titles[1])
 
 
 def plot_date_line(data_dict, title):
@@ -233,14 +231,12 @@ def plot_date_line(data_dict, title):
     plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
 
     plt.title(title)
-    plt.savefig(FOLDER + title + '.png')
+    plt.savefig(constants.folder + title + '.png')
     plt.close()
 
 
 def skills_chart(data, chart_names, user_id):
     """ Skills charts """
-    chart_names = chart_names[5]
-
     user_skill = chart_data_verification(data, "skills", chart_names, user_id)
     if user_skill is False:
         return
@@ -249,7 +245,7 @@ def skills_chart(data, chart_names, user_id):
     for each_skill in user_skill:
         aggregator_dict_sum_chart("skill", skills_freq_count, each_skill)
 
-    plot_creator_horizontal(skills_freq_count, chart_names)
+    plot_creator_horizontal(skills_freq_count, chart_names[6])
 
 
 def global_companies(data):
