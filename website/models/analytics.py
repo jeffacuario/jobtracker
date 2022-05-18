@@ -1,9 +1,11 @@
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
 import website.models.db as db
 
-
+# Constants and Global settings
+matplotlib.use("Agg")  # To multithread generate plots for MacOS
 FOLDER = 'website/static/images/analytics/'
 
 
