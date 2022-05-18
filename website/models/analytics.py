@@ -19,12 +19,12 @@ def generate_charts(req_data):
     skills_chart(data, req_data['charts'], req_data['userID'])
 
 
-def aggregator_dict_sum_chart(attribute, dict, iter_item):
+def aggregator_dict_sum_chart(attribute, data, iter_item):
     """ Generate dictionary counter"""
-    if iter_item[attribute] in dict:
-        dict[iter_item[attribute]] += 1
+    if iter_item[attribute] in data:
+        data[iter_item[attribute]] += 1
     else:
-        dict[iter_item[attribute]] = 1
+        data[iter_item[attribute]] = 1
 
 
 def plot_no_data(title):
@@ -57,7 +57,7 @@ def plot_creator(data_dict, title, lab_y=''):
     x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
 
     change_flag = False
-    # Prevent exaggerated size
+
     if len(x_ls) == 1:
         change_flag = True
         x_ls.append('')
@@ -86,7 +86,7 @@ def plot_creator_horizontal(data_dict, title, lab_y=''):
     x_ls, y_ls = list(data_dict.keys()), list(data_dict.values())
 
     change_flag = False
-    # Prevent exaggerated size
+
     if len(x_ls) == 1:
         change_flag = True
         x_ls.append('')
@@ -142,7 +142,7 @@ def chart_data_verification(data, collection, chart_names, user_id):
     """ Verifies the data to generate charts.
         Returns the data by user id or False if data fails the check.
     """
-    # empty check
+    # Empty check
     data_in_depth = chart_collection_defence(data, collection, chart_names)
     if not data_in_depth:
         empty_charts_by_names(chart_names)
@@ -202,7 +202,6 @@ def counts_chart(data, chart_names, user_id):
 
 def apps_chart(data, chart_titles, user_id):
     """ Generate app data """
-
     user_app = chart_data_verification(data, "applications", chart_titles, user_id)
     if user_app is False:
         return
