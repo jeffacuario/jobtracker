@@ -109,7 +109,7 @@ def contacts():
         data = request.form.to_dict()
         data['userID'] = userID
         # default image
-        data['img'] = 'https://firebasestorage.googleapis.com/v0/b/jobtrack-39d73.appspot.com/o/photo_icon.jpeg?alt=media&token=e1c9c533-0aa1-44bb-b465-762fd9d1b928'
+        data['img'] = 'https://bit.ly/3yKJCvq'
 
         if request.files['img']:
             img = request.files['img']
@@ -124,12 +124,17 @@ def contacts():
             return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
 
         # handle duplicate entry
+        checkList = ['fName', 'lName', 'title', 'email']
         for item in contacts:
-            if add.fName == item['fName'] and add.lName == item['lName'] and add.title == item['title'] and add.email == item['email'] and add.phone == item['phone']:
+            count = 0
+            for i in checkList:
+                if add.__getattribute__(i) == item[i]:
+                    count += 1
+            if count == len(checkList):
                 return render_template("contacts/contacts.html", contacts=contacts, jobs=jobs, alert=1)
 
         db.addContact(add)
-        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
+        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)            
     else:
         return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=db.getJobs(userID))
 
