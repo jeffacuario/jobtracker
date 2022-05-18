@@ -8,7 +8,6 @@ source: https://icons8.com/preloaders/
 <div>
     <h1>Analytics</h1>
 
-
 <!--    Center this -->
     {% for i in range(data.charts | length) %}
         {% if i == 0 %}
@@ -26,7 +25,7 @@ source: https://icons8.com/preloaders/
         {% endif %}
 
         <div class="analytics-chart">
-            <img src="static/images/analytics/loading/inf-load-free.gif" id="chart{{data.charts[i]}}">
+            <img class="analytics-chart" src="static/images/analytics/loading/inf-load-free.gif" id="chart{{data.charts[i]}}">
         </div>
 
         {% if i in [1, 4, 6, (data.charts | length) - 1] %}

@@ -36,7 +36,7 @@ def counts_chart(data, chart_names, user_id):
         plot_no_data(title)
         return
 
-    plt.bar(['Applications', 'Skills', 'Contacts'], data_records_count)
+    plt.bar(['Applications', 'Skills', 'Contacts'], data_records_count, color=['navy', 'red', 'green'])
     plt.ylabel('Count')
     plt.yticks(np.arange(0, max(data_records_count) + 1, step=1))
 
@@ -88,7 +88,8 @@ def apps_chart_global(data, chart_titles):
 
 def skills_chart(data, chart_names, user_id):
     """ Skills charts """
-    user_skill = chart_data_verification(data, "skills", chart_names, user_id)
+    user_skill = chart_data_verification(data, "skills", chart_names[6], user_id)
+
     if user_skill is False:
         return
 
@@ -128,7 +129,8 @@ def plot_no_data(title):
              bbox=dict(
                 boxstyle="square",
                 facecolor="white"
-                ))
+                )
+             )
 
     plt.yticks([])
     plt.xticks([])
@@ -153,7 +155,7 @@ def plot_creator(data_dict, title, lab_y=''):
         x_ls.append('')
         y_ls.append(0)
 
-    plt.bar(x_ls, y_ls)
+    plt.bar(x_ls, y_ls, color=['navy', 'red', 'green'])
     plt.ylabel(lab_y)
     plt.yticks(np.arange(0, max(y_ls) + 1, step=1))
 
@@ -182,7 +184,7 @@ def plot_creator_horizontal(data_dict, title, lab_y=''):
         x_ls.append('')
         y_ls.append(0)
 
-    plt.barh(x_ls, y_ls)
+    plt.barh(x_ls, y_ls, color=['navy', 'red', 'green'])
     plt.ylabel(lab_y)
     plt.yticks([])
     plt.xticks(np.arange(0, max(y_ls) + 1, step=1))
