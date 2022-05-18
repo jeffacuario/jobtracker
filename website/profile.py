@@ -1,11 +1,13 @@
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, redirect, url_for, \
-    session, send_file
+    session, send_file, g
 import requests
 import json
 import pyrebase
 from firebase_admin import auth as fa_auth
 import os
+import website.models.db as db
+
 
 auth = Blueprint("auth", __name__)
 profile = Blueprint("profile", __name__)
@@ -33,7 +35,27 @@ def allowed_file(filename):
 
 @profile.route("/settings")
 def settings_page():
-    return render_template("settings/settings.html")
+    userID = g.user['users'][0]['localId']
+    jobs = db.getJobs(userID)
+    roles = []
+    companies = []
+    types = []
+    for i in range(len(jobs)):
+        if jobs[i]['position'] not in roles:
+            roles.append(jobs[i]['position'])
+        if jobs[i]['company'] not in companies:
+            companies.append(jobs[i]['company'])
+        if jobs[i]['type'] not in types:
+            types.append(jobs[i]['type'])
+    skill_res = db.getSkills(userID)
+    skills = []
+    for i in range(len(skill_res)):
+        if skill_res[i]['skill'] not in skills:
+            skills.append(skill_res[i]['skill'])
+    return render_template("settings/settings.html", 
+                           roles=", ". join(roles), companies=", ". 
+                           join(companies), types=", ". join(types), 
+                           skills=", ". join(skills))
 
 
 @profile.route("/settings", methods=["POST"])
@@ -71,4 +93,3 @@ def display_default():
     r = requests.get(default_url, stream=True)
     res = r.raw
     return send_file(res, mimetype='image/jpeg')
-
