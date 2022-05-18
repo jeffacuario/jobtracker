@@ -134,7 +134,7 @@ def contacts():
                 return render_template("contacts/contacts.html", contacts=contacts, jobs=jobs, alert=1)
 
         db.addContact(add)
-        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)         
+        return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
     else:
         return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=db.getJobs(userID))
 
