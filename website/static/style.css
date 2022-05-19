@@ -353,16 +353,7 @@ nav {
 /*************  *************   End of Landing Page   ************* *************/
 
 /************* *************    Analytics Page  ************* *************/
-.analytics-descriptor {
-    /* may want to use bootstrap tiles later */
-    display: flex;
-}
 
-.analytics-chart {
-    height: 480px;
-    width: 640px;
-    text-align: center;
-}
 
 /************* *************    End of  Analytics Page  ************* *************/
 

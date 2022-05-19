@@ -8,34 +8,38 @@ source: https://icons8.com/preloaders/
 <div class="container">
     <h1>Analytics</h1>
 
-<!--    Center this -->
     {% for i in range(data.charts | length) %}
         {% if i == 0 %}
-            <div class="analytics-descriptor">
+            <div class="row">
         {% elif i == 2 %}
             <h2>
                 Positions
             </h2>
-            <div class="analytics-descriptor positions">
+            <div class="row positions">
         {% elif i == 6 %}
             <h2>
                 Skills
             </h2>
-            <div class="analytics-descriptor skills">
+            <div class="row skills">
         {% elif i == 7 %}
             <h2>
                 Other Users
             </h2>
-            <div class="analytics-descriptor global">
+            <div class="row global">
         {% endif %}
 
-        <div class="analytics-chart">
-            <img class="analytics-chart" src="static/images/analytics/loading/inf-load-free.gif" id="chart{{data.charts[i]}}">
+        {% if i == 6 %}
+            <div class="text-center">
+        {% else %}
+            <div class="col-md-6">
+        {% endif %}
+            <img class="analytics-chart img-fluid" src="static/images/analytics/loading/inf-load-free.gif" id="chart{{data.charts[i]}}">
         </div>
 
-        {% if i in [1, 4, 6, (data.charts | length) - 1] %}
+        {% if i in [1, 6, (data.charts | length) - 1] %}
             </div>
         {% endif %}
+
     {% endfor %}
 
     <button id="refreshData">
