@@ -5,7 +5,7 @@ source: https://icons8.com/preloaders/
 {% extends "base.html" %}
 {% block title %}Analytics{% endblock %}
 {% block content %}
-<div>
+<div class="container">
     <h1>Analytics</h1>
 
 <!--    Center this -->
@@ -16,12 +16,17 @@ source: https://icons8.com/preloaders/
             <h2>
                 Positions
             </h2>
-            <div class="analytics-descriptor">
-        {% elif i == 5 %}
+            <div class="analytics-descriptor positions">
+        {% elif i == 6 %}
             <h2>
                 Skills
             </h2>
-            <div class="analytics-descriptor">
+            <div class="analytics-descriptor skills">
+        {% elif i == 7 %}
+            <h2>
+                Other Users
+            </h2>
+            <div class="analytics-descriptor global">
         {% endif %}
 
         <div class="analytics-chart">
