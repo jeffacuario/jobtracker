@@ -5,7 +5,6 @@ import json
 import pyrebase
 import requests
 import functools
-import os
 
 
 auth = Blueprint('auth', __name__)
@@ -13,16 +12,8 @@ auth = Blueprint('auth', __name__)
 """
     Initialize pyrebase app
 """
-try:
-    with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
-        pyrebase_config = json.load(json_file)
-except IOError:
-    pyrebase_config = {
-        "apiKey": os.getenv('APIKEY'),
-        "authDomain": os.getenv('AUTHDOMAIN'),
-        "databaseURL": os.getenv('DATABASEURL'),
-        "storageBucket": os.getenv('STORAGEBUCKET')
-    }
+with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
+    pyrebase_config = json.load(json_file)
 firebase = pyrebase.initialize_app(pyrebase_config)
 fb_auth = firebase.auth()
 
