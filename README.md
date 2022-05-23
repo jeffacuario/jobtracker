@@ -37,3 +37,15 @@ Build the image by running `docker image build -t jobtracker .`
 Run the container by running `docker run -p 5000:5000 -d jobtracker`
 
 Open your web browser and navigate to http://localhost:5000/
+
+## Deploying to Heroku
+
+Login to Heroku: `heroku login`
+
+Build the image: `docker buildx build --platform linux/amd64 -t jobtracker .`
+
+Tag the image: `docker tag jobtracker registry.heroku.com/jobtracker-467/web`
+
+Push the image: `docker push registry.heroku.com/jobtracker-467/web`
+
+Release: `heroku container:release web -a jobtracker-467`

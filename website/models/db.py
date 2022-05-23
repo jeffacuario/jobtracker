@@ -3,35 +3,13 @@ from firebase_admin import firestore
 import json
 import pyrebase
 from flask import session
-import os
-import base64
-
-
-def b64d(s):
-    return base64.b64decode(s).decode()
 
 
 def db_init():
     """ Log in creds"""
     # Firebase credentials
     file_json = "credentials.json"
-    try:
-        cred = fa.credentials.Certificate("./private/" + file_json)
-    except IOError:
-        private_key = b64d(os.getenv('PRIVATE_KEY'))
-        firebase_credentials = {
-            "type": "service_account",
-            "project_id": os.getenv('PROJECT_ID'),
-            "private_key_id": os.getenv('PRIVATE_KEY_ID'),
-            "private_key": private_key,
-            "client_email": os.getenv('CLIENT_EMAIL'),
-            "client_id": os.getenv('CLIENT_ID'),
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_x509_cert_url": os.getenv('CLIENT_X509_CERT_URL')
-        }
-        cred = fa.credentials.Certificate(firebase_credentials)
+    cred = fa.credentials.Certificate("./private/" + file_json)
     fa.initialize_app(cred)
 
 

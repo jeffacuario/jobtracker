@@ -12,16 +12,8 @@ import website.models.db as db
 auth = Blueprint("auth", __name__)
 profile = Blueprint("profile", __name__)
 
-try:
-    with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
-        pyrebase_config = json.load(json_file)
-except IOError:
-    pyrebase_config = {
-        "apiKey": os.getenv('APIKEY'),
-        "authDomain": os.getenv('AUTHDOMAIN'),
-        "databaseURL": os.getenv('DATABASEURL'),
-        "storageBucket": os.getenv('STORAGEBUCKET')
-    }
+with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
+    pyrebase_config = json.load(json_file)
 firebase = pyrebase.initialize_app(pyrebase_config)
 
 # storage
