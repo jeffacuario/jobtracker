@@ -3,7 +3,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, \
     session, send_file, g
 import requests
 from firebase_admin import auth as fa_auth
-import os
 import website.models.db as db
 from website.pyre import fb_storage
 
