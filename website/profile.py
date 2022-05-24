@@ -1,4 +1,3 @@
-from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, redirect, url_for, \
     session, send_file, g
 import requests
