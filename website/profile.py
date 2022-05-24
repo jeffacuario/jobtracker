@@ -13,8 +13,6 @@ profile = Blueprint("profile", __name__)
 # reference: https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg", "webp"])
 
-path_local = "website/static/images/profile/"
-
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
@@ -51,19 +49,15 @@ def update_file():
     if "file" in request.files:
         file = request.files["file"]
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(path_local + filename)
             user_uid = session.get("user_id")
-            path_on_cloud = "profile_images/" + user_uid + "/" + filename
+            path_on_cloud = "profile_images/" + user_uid + "/" + file.filename
             upload = fb_storage.child(path_on_cloud).put(
-                path_local + filename, session.get("token_id")
+                file, session.get("token_id")
             )
             image_url = fb_storage.child(path_on_cloud).get_url(
                 upload["downloadTokens"]
             )
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
-            if os.path.exists(path_local + filename):
-                os.remove(path_local + filename)
         return redirect(url_for("profile.settings_page"))
     if "inputEmail" in request.form:
         email = request.form["inputEmail"]
