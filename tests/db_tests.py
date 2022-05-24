@@ -32,7 +32,9 @@ class MyTestCase(unittest.TestCase):
             firebase_admin.initialize_app(cred)
             db = firebase_admin.firestore.client()
             cls.tests_db = db.collection(cls.test_col).document(cls.test_doc)
-        except (IOError, OSError):
+        except IOError:
+            cls.mock_flag = True
+        except ImportError:
             cls.mock_flag = True
 
     @classmethod
