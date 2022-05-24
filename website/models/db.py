@@ -1,8 +1,8 @@
 import firebase_admin as fa
 from firebase_admin import firestore
 import json
+import pyrebase
 from flask import session
-from website.pyre import fb_storage
 
 
 def db_init():
@@ -11,6 +11,14 @@ def db_init():
     file_json = "credentials.json"
     cred = fa.credentials.Certificate("./private/" + file_json)
     fa.initialize_app(cred)
+
+
+def fbStorage_init():
+    """ Initialize the connection to firebase storage"""
+    # pyrebase credentials
+    with open("./private/jobtrack-pyrebase-credentials.json") as json_file:
+        pyrebase_config = json.load(json_file)
+    return pyrebase.initialize_app(pyrebase_config)
 
 
 def dbConn(collection):
@@ -123,8 +131,8 @@ def addContactImage(img, userID):
     """Adds the contact image to firebase storage"""
     try:
         path_on_cloud = "contact_images/" + userID + "/" + img.filename
-        upload = fb_storage.child(path_on_cloud).put(img, session.get("token_id"))
-        image_url = fb_storage.child(path_on_cloud).get_url(upload["downloadTokens"])
+        upload = fbStorage_init().storage().child(path_on_cloud).put(img, session.get("token_id"))
+        image_url = fbStorage_init().storage().child(path_on_cloud).get_url(upload["downloadTokens"])
         return image_url
 
     except Exception as e:

@@ -34,8 +34,6 @@ class MyTestCase(unittest.TestCase):
             cls.tests_db = db.collection(cls.test_col).document(cls.test_doc)
         except IOError:
             cls.mock_flag = True
-        except ImportError:
-            cls.mock_flag = True
 
     @classmethod
     def tearDownClass(cls):
