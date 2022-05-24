@@ -13,7 +13,7 @@
     <tbody>
         {% for n in range(contacts|length) %}
         <tr>
-            <td><img src="{{contacts[n].img}}" alt="" height="40"></td>
+            <td class="imgCell"><img src="{{contacts[n].img}}" alt="" ></td>
             <td>{{contacts[n].fName}} {{contacts[n].lName}}</td>
             <td>{{contacts[n].title}}</td>
             <td>{{contacts[n].company}}</td>

@@ -62,7 +62,7 @@
     <div class="row">
         <div class="mb-4">
             <label for="notes" class="form-label">Description/Notes:</label>
-            {% if entry.location != 0 %}
+            {% if entry.notes != 0 %}
                 <input type="text" class="form-control" id="notes" aria-describedby="notesHelp"
                 name="notes" value="{{entry.notes}}"/>
             {% else %}

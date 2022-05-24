@@ -23,10 +23,6 @@ def jobs():
         app = Application(data)
         jobs = db.getJobs(userID)
 
-        if len(jobs) == 0:
-            db.addJob(app)
-            return render_template("jobs/jobs.html", jobs=db.getJobs(userID), alert=0, typeList=typeList)
-
         # handle duplicate entry
         for item in jobs:
             if app.company == item['company'] and app.position == item['position'] and app.type == item['type']:
@@ -67,10 +63,6 @@ def skills():
         add = Skill(data)
         skills = db.getSkills(userID)
         jobs = db.getJobs(userID)
-
-        if len(skills) == 0:
-            db.addSkill(add)
-            return render_template("skills/skills.html", skills=db.getSkills(userID), jobs=jobs, alert=0)
 
         # handle duplicate entry
         for item in skills:
@@ -118,10 +110,6 @@ def contacts():
         add = Contact(data)
         contacts = db.getContacts(userID)
         jobs = db.getJobs(userID)
-
-        if len(contacts) == 0:
-            db.addContact(add)
-            return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
 
         # handle duplicate entry
         checkList = ['fName', 'lName', 'title', 'email']
