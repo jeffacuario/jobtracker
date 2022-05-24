@@ -12,5 +12,5 @@ try:
 
     fb_auth = firebase.auth()
     fb_storage = firebase.storage()
-except (IOError, OSError) as e:
+except (IOError, OSError, ImportError) as e:
     print(e)
