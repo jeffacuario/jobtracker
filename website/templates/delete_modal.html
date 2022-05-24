@@ -1,11 +1,14 @@
 <!-- Button HTML (to Trigger Modal) -->
-<a href="#myModal{{n}}" class="trigger-btn" data-toggle="modal">Delete</a>
+<a href="#myModal{{n}}" class="trigger-btn" data-toggle="modal" id="modalIcon"><i class="icon-trash"></i></a>
 
 <!-- Modal HTML -->
 <div id="myModal{{n}}" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
+
 			<div class="modal-header flex-column">
+				<i class="icon-remove-sign icon-4x"></i>
+
 				<h4 class="modal-title w-100">Are you sure you want to delete {{entry}}?</h4>	
 			</div>
 			<div class="modal-body">
