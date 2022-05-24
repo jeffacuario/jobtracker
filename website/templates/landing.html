@@ -23,8 +23,13 @@
             </div>
             <nav class="d-flex p-2 justify-content-end">
                 <!-- <a href=# class="nav-btn-1">About & Meet the team</a> -->
-                <a href="/login" class="nav-btn-1">Sign in</a>
-                <a class="btn rounded-pill nav-btn-2" href="/register">Get started</a>
+                {% if g.user %}
+                <a href="{{ url_for('views.jobs') }}" class="nav-btn-1">Sign in</a>
+                <a class="btn rounded-pill nav-btn-2" href="{{ url_for('views.jobs') }}">Get started</a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="nav-btn-1">Sign in</a>
+                <a class="btn rounded-pill nav-btn-2" href="{{ url_for('auth.register') }}">Get started</a>
+                {% endif %}
             </nav>
         </div>
     </header>
