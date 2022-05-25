@@ -7,50 +7,35 @@ source: https://icons8.com/preloaders/
 {% block content %}
 <div class="container">
     <h1>Analytics</h1>
-
     {% for i in range(data.charts | length) %}
-        {% if i == 0 %}
-            <div class="row">
-        {% elif i == 2 %}
-            <h2>
-                Positions
-            </h2>
-            <div class="row positions">
+        {% if i == 2 %}
+            <h2>Positions</h2>
         {% elif i == 6 %}
-            <h2>
-                Skills
-            </h2>
-            <div class="row skills">
+            <h2>Skills</h2>
         {% elif i == 7 %}
-            <h2>
-                Other Users
-            </h2>
-            <div class="row global">
+            <h2>Other Users</h2>
         {% endif %}
-
+        {% if i in [0, 2, 6, 7] %}
+            <div class="row">
+        {% endif %}
         {% if i == 6 %}
             <div class="text-center">
         {% else %}
             <div class="col-md-6">
         {% endif %}
             <img class="analytics-chart img-fluid" src="static/images/analytics/loading/inf-load-free.gif" id="chart{{data.charts[i]}}">
-        </div>
-
+            </div>
         {% if i in [1, 6, (data.charts | length) - 1] %}
             </div>
         {% endif %}
-
     {% endfor %}
-
     <button id="refreshData">
         Refresh
     </button>
-
 </div>
 {% endblock %}
 
 {% block script %}
-
 document.getElementById("refreshData").addEventListener("click", () => {
     window.location.reload();
 })
