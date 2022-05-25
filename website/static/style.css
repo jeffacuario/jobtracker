@@ -520,3 +520,7 @@ tr td:last-child {
   font-family: 'Montserrat', sans-serif;
 }
 /************* *************    End of Settings Page  ************* *************/
+
+#refreshData{
+  margin-bottom: 1%;
+}
