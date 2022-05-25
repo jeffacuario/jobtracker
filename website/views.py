@@ -23,10 +23,6 @@ def jobs():
         app = Application(data)
         jobs = db.getJobs(userID)
 
-        if len(jobs) == 0:
-            db.addJob(app)
-            return render_template("jobs/jobs.html", jobs=db.getJobs(userID), alert=0, typeList=typeList)
-
         # handle duplicate entry
         for item in jobs:
             if app.company == item['company'] and app.position == item['position'] and app.type == item['type']:
@@ -67,10 +63,6 @@ def skills():
         add = Skill(data)
         skills = db.getSkills(userID)
         jobs = db.getJobs(userID)
-
-        if len(skills) == 0:
-            db.addSkill(add)
-            return render_template("skills/skills.html", skills=db.getSkills(userID), jobs=jobs, alert=0)
 
         # handle duplicate entry
         for item in skills:
@@ -119,10 +111,6 @@ def contacts():
         contacts = db.getContacts(userID)
         jobs = db.getJobs(userID)
 
-        if len(contacts) == 0:
-            db.addContact(add)
-            return render_template("contacts/contacts.html", contacts=db.getContacts(userID), jobs=jobs, alert=0)
-
         # handle duplicate entry
         checkList = ['fName', 'lName', 'title', 'email']
         for item in contacts:
@@ -165,32 +153,25 @@ def updateContact(contactID):
     return redirect(url_for('views.contacts'))
 
 
-@views.route('/analytics', methods=['GET', 'POST'])
+@views.route('/analytics', methods=['GET'])
 @login_required
 def analytics():
     """ Render Analytics Page """
-    if request.method == 'POST':
-        # To be determined if a search is needed.
-        return '', 403
+    data = {
+        "charts": [
+            "Your Insights",
+            "Your Entries over time",
+            "Your Job Titles Applied",
+            "Companies Applied",
+            "Position Types",
+            "Positions Applied",
+            "Your Skills",
+            "Job Titles by Other Users",
+            "Companies by Other Users"
+        ]
+    }
 
-    elif request.method == "GET":
-        # Get request
-
-        data = {
-            "charts": [
-                "Your Insights",
-                "Your Job Titles Applied",
-                "Companies Applied",
-                "Position Types",
-                "Positions Applied",
-                "Your Skills",
-                "Your Entries over time"
-            ]
-        }
-
-        return render_template("analytics/analytics.html", data=data)
-
-    return 'Method not allowed', 405
+    return render_template("analytics/analytics.html", data=data)
 
 
 @views.route('/analytics/generate-charts', methods=['POST'])

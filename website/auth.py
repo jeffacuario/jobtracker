@@ -1,21 +1,13 @@
 from firebase_admin import auth as fa_auth
 from distutils.command.config import config  # noqa F401
 from flask import Blueprint, render_template, request, redirect, url_for, g, session  # noqa E501
+from website.pyre import fb_auth
 import json
-import pyrebase
 import requests
 import functools
 
 
 auth = Blueprint('auth', __name__)
-
-"""
-    Initialize pyrebase app
-"""
-with open('./private/jobtrack-pyrebase-credentials.json') as json_file:
-    pyrebase_config = json.load(json_file)
-firebase = pyrebase.initialize_app(pyrebase_config)
-fb_auth = firebase.auth()
 
 
 @auth.route('/login', methods=['POST', 'GET'])

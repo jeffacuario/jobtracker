@@ -16,9 +16,6 @@ class MyTestCase(unittest.TestCase):
         'Name': 'Tester'
     }
 
-    def test_pass(self):
-        self.assertTrue(True)
-
     @classmethod
     def setUpClass(cls):
         """ Set up the database credentials.
@@ -73,12 +70,6 @@ class MyTestCase(unittest.TestCase):
                 test_update["Applied"],
                 5
             )
-
-    def test_data_job_func(self):
-        pass
-
-    def test_data_skills_func(self):
-        pass
 
 
 if __name__ == '__main__':

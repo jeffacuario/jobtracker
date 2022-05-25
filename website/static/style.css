@@ -36,6 +36,29 @@ nav {
   padding-right: 1%;
 }
 
+/* Modal Icons */
+#modalIcon {
+  text-decoration: none;
+}
+
+.imgCell {
+  text-align: center;
+}
+
+td > img {
+    height: 100px;
+}
+
+a > i {
+  font-size: 27px;
+  margin-right: 15px;
+}
+
+
+tr td:last-child {
+  width: 1%;
+  text-align: center;
+}
 /************* *************    Landing Page  ************* *************/
 
 /**
@@ -352,20 +375,6 @@ nav {
 
 /*************  *************   End of Landing Page   ************* *************/
 
-/************* *************    Analytics Page  ************* *************/
-.analytics-descriptor {
-    /* may want to use bootstrap tiles later */
-    display: flex;
-}
-
-.analytics-chart {
-    height: 480px;
-    width: 640px;
-    text-align: center;
-}
-
-/************* *************    End of  Analytics Page  ************* *************/
-
 /************* *************    Settings Page  ************* *************/
 
 /**
@@ -511,3 +520,7 @@ nav {
   font-family: 'Montserrat', sans-serif;
 }
 /************* *************    End of Settings Page  ************* *************/
+
+#refreshData{
+  margin-bottom: 1%;
+}

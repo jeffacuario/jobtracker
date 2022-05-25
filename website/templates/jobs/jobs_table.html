@@ -4,8 +4,8 @@
             <th>Company</th>
             <th>Position</th>
             <th>Type</th>
-            <th>Date</th>
             <th>Status</th>
+            <th>Date Submitted</th>
             <th>Update/Delete</th>
         </tr>
     </thead>
@@ -15,8 +15,8 @@
             <td>{{jobs[n].company}}</td>
             <td>{{jobs[n].position}}</td>
             <td>{{jobs[n].type}}</td>
-            <td>{{jobs[n].date}}</td>
             <td>{{jobs[n].status}}</td>
+            <td>{{jobs[n].date}}</td>
             <td>
                 {% with entry=jobs[n] %}
                     {% include 'jobs/jobs_detail_modal.html'%}

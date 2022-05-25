@@ -2,16 +2,16 @@
     <div class="mb-3">
         <label for="company" class="form-label">Company*</label>
         <input type="text" class="form-control" id="company" aria-describedby="companyHelp"
-            name="company" placeholder="Enter Company" />
+            name="company" placeholder="Enter Company" required/>
     </div>
     <div class="mb-3">
         <label for="position" class="form-label">Position*</label>
         <input type="text" class="form-control" id="position" aria-describedby="positionHelp"
-            name="position" placeholder="Enter Position" />
+            name="position" placeholder="Enter Position" required/>
     </div>
     <div class="mb-3">
         <label for="type" class="form-label" name="type">Type*</label>
-        <select name="type" class="form-control" >
+        <select name="type" class="form-control">
             {% for type in typeList %}
                 <option>{{type}}</option>
             {% endfor %}
@@ -20,7 +20,7 @@
     <div class="mb-3">
         <label for="status" class="form-label">Status*</label>
         <input type="text" class="form-control" id="status" aria-describedby="statusHelp" name="status"
-            placeholder="Enter Status" />
+            placeholder="Enter Status" required/>
     </div>
 
     <div class="modal-action">
