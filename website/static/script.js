@@ -20,7 +20,7 @@ function getCharts(charts, uid) {
                 document.getElementById("chart" + charts[i]).src = baseImgSrc + charts[i] + baseExt;
             }
             })
-        .catch( (e) =>{
+        .catch( (e) => {
             console.error(e);
         }
     )

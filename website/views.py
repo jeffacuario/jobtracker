@@ -153,34 +153,25 @@ def updateContact(contactID):
     return redirect(url_for('views.contacts'))
 
 
-@views.route('/analytics', methods=['GET', 'POST'])
+@views.route('/analytics', methods=['GET'])
 @login_required
 def analytics():
     """ Render Analytics Page """
-    if request.method == 'POST':
-        # To be determined if a search is needed.
-        return '', 403
+    data = {
+        "charts": [
+            "Your Insights",
+            "Your Entries over time",
+            "Your Job Titles Applied",
+            "Companies Applied",
+            "Position Types",
+            "Positions Applied",
+            "Your Skills",
+            "Job Titles by Other Users",
+            "Companies by Other Users"
+        ]
+    }
 
-    elif request.method == "GET":
-        # Get request
-
-        data = {
-            "charts": [
-                "Your Insights",
-                "Your Entries over time",
-                "Your Job Titles Applied",
-                "Companies Applied",
-                "Position Types",
-                "Positions Applied",
-                "Your Skills",
-                "Job Titles by Other Users",
-                "Companies by Other Users"
-            ]
-        }
-
-        return render_template("analytics/analytics.html", data=data)
-
-    return 'Method not allowed', 405
+    return render_template("analytics/analytics.html", data=data)
 
 
 @views.route('/analytics/generate-charts', methods=['POST'])
