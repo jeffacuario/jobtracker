@@ -1,6 +1,14 @@
 {% extends "base.html" %} 
 {% block title %}Register{% endblock %} 
 {% block content %}
+{% if error_message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Try Again</strong> {{error_message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
     <form class="form-signup" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Create your free account</h1>
         <label for="inputName" class="sr-only">Name</label>
@@ -15,10 +23,4 @@
         <br>
         <p>Already have an acccount? <a href="{{ url_for('auth.login') }}">Log In</a></p>
     </form>
-
-  
-
-{% if error_message %}
-    <p>{{error_message}}</p>
-{% endif %}
 {% endblock %}
