@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, \
-    session, send_file, g
+    session, send_file, g, flash
 import requests
 from firebase_admin import auth as fa_auth
 import website.models.db as db
@@ -56,7 +56,8 @@ def update_file():
                 upload["downloadTokens"]
             )
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
-        return redirect(url_for("profile.settings_page"))
+        # return redirect(url_for("profile.settings_page"))
+        return render_template("settings/settings.html", alert=2)
     if "inputEmail" in request.form:
         email = request.form["inputEmail"]
         fa_auth.update_user(session.get("user_id"), email=email)
