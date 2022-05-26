@@ -2,7 +2,8 @@
 {% block title %}Settings{% endblock %}
 
 {% block content %}
-
+    <!-- Alert -->
+    {% include 'alert.html' %}
     <!------------------- Background ------------------->
     <section class="bg-section-setting" style="background-image: url(/static/images/keep_track_1.jpg);">
         <div class="bg-area">
@@ -73,47 +74,47 @@
                             </div>
                         </div>
                     </div>
-                                      <div class="user-info-section">
-                            <h3><i class="icon-bookmark"></i>&nbsp; JOB INTERESTS</h3>
-                            <br>
-                            <div class="education-info">
-                                <div class="row justify-content-start">
-                                    <div class="col-4 user-content-category">
-                                        <dd>ROLES</dd>
-                                    </div>
-                                    <div class="col-8 user-content-input">
-                                        {{ roles }}
-                                    </div>
+                    <div class="user-info-section">
+                        <h3><i class="icon-bookmark"></i>&nbsp; JOB INTERESTS</h3>
+                        <br>
+                        <div class="education-info">
+                            <div class="row justify-content-start">
+                                <div class="col-4 user-content-category">
+                                    <dd>ROLES</dd>
                                 </div>
-
-                                <div class="row justify-content-start">
-                                    <div class="col-4 user-content-category">
-                                        <dd>FULL TIME/INTERNSHIP</dd>
-                                    </div>
-                                    <div class="col-8 user-content-input">
-                                        {{ types }}
-                                    </div>
+                                <div class="col-8 user-content-input">
+                                    {{ roles }}
                                 </div>
+                            </div>
 
-                                <div class="row justify-content-start">
-                                    <div class="col-4 user-content-category">
-                                        <dd>SKILLS</dd>
-                                    </div>
-                                    <div class="col-8 user-content-input">
-                                        {{ skills }}
-                                    </div>
+                            <div class="row justify-content-start">
+                                <div class="col-4 user-content-category">
+                                    <dd>FULL TIME/INTERNSHIP</dd>
                                 </div>
+                                <div class="col-8 user-content-input">
+                                    {{ types }}
+                                </div>
+                            </div>
 
-                                <div class="row justify-content-start">
-                                    <div class="col-4 user-content-category">
-                                        <dd>COMPANIES</dd>
-                                    </div>
-                                    <div class="col-8 user-content-input">
-                                        {{ companies }}
-                                    </div>
+                            <div class="row justify-content-start">
+                                <div class="col-4 user-content-category">
+                                    <dd>SKILLS</dd>
+                                </div>
+                                <div class="col-8 user-content-input">
+                                    {{ skills }}
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-start">
+                                <div class="col-4 user-content-category">
+                                    <dd>COMPANIES</dd>
+                                </div>
+                                <div class="col-8 user-content-input">
+                                    {{ companies }}
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -56,7 +56,7 @@ def update_file():
                 upload["downloadTokens"]
             )
             fa_auth.update_user(session.get("user_id"), photo_url=image_url)
-        return redirect(url_for("profile.settings_page"))
+        return render_template("settings/settings.html", alert=2)
     if "inputEmail" in request.form:
         email = request.form["inputEmail"]
         fa_auth.update_user(session.get("user_id"), email=email)
