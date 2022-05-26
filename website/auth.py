@@ -79,7 +79,7 @@ def reset():
         email = request.form['inputEmail']
         try:
             fb_auth.send_password_reset_email(email)
-            return redirect(url_for("auth.login"))
+            return render_template("auth/reset.html", success_message=1)
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']

@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
+{% if error_message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Try Again</strong> {{error_message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
 <form class="form-signup" method="post">
     <h1 class="h3 mb-3 font-weight-normal">Login</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
@@ -14,8 +22,4 @@
     <p>Don't have an acccount? <a href="{{ url_for('auth.register') }}">Sign up</a></p>
     <p>Forgot your password? <a href="{{ url_for('auth.reset') }}">Reset your password</a></p>
 </form>
-
-{% if error_message %}
-    <p>{{error_message}}</p>
-{% endif %}
 {% endblock %}

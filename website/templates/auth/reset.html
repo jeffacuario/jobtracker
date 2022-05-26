@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
+{% if error_message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Try Again</strong> {{error_message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% elif success_message %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Password reset email sent</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
 <form class="form-signup" method="post">
     <h1 class="h3 mb-3 font-weight-normal">Password Reset</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
@@ -8,8 +24,4 @@
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form>
-
-{% if error_message %}
-    <p>{{error_message}}</p>
-{% endif %}
 {% endblock %}
